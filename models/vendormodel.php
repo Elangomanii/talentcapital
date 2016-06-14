@@ -80,7 +80,7 @@ class vendormodel extends CI_Model {
 		    </head>
 		    <body>
 			<h3>Dear Candidate</h3>
-			<p>You are refered to register in Talent Capital India by <span style="fontsize:">".$session_username."</span></p>
+			<p>You are refered to register in Talent Capital India by <span >".$session_username."</span></p>
 			<p>Please click below link to register with talent capital</p>
 			<p>".base_url()."talentcapitalctr/hiringPartnerLink/".$vendorCode."</p>
 			<br>
