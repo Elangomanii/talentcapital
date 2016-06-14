@@ -684,6 +684,7 @@
                                   <th><label>Duration To</label></th>
                                   <th><label>Location</label></th>
 				  <th><label>Reason Description</label></th>
+				  <th><label>File Upload</label></th>
                                   <th><button type="button" onclick="addMore1();" class="btn-add btn btn-default"><i class="fa fa-plus"></i></button></th>
                                 </tr>
                               </thead>
