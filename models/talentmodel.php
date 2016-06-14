@@ -304,32 +304,115 @@ class talentModel extends CI_Model {
             $data = $this->upload->data();
             $profilePic=$folderPath.$data['file_name'];
             
-            $data= array(
-                'candidate_name'=>$this->input->post('candidate_name'),
-                'mobile_number'=>$this->input->post('mobile_number'),
-                'mail_id'=>$this->input->post('mail_id'),
-                'skills'=>implode(",",$this->input->post('skills')),
-                'total_exp_year'=>$this->input->post('total_exp_year'),
-		'total_exp_month'=>$this->input->post('total_exp_month'),
-                'relevant_exp'=>$this->input->post('relevant_exp'),
-                'notice_period'=>$this->input->post('notice_period'),
-                'current_ctc'=>$this->input->post('current_ctc'),
-                'expected_ctc'=>$this->input->post('expected_ctc'),
-                'day'=>$this->input->post('day'),
-                'month'=>$this->input->post('month'),
-                'year'=>$this->input->post('year'),
-                'pan_card_no'=>$this->input->post('pan_card_no'),
-                'pan_card_attach'=>$filePath,
-                'language_known'=>implode(",",$this->input->post('language_known')),
-                'current_location'=>$this->input->post('current_location'),
-                'preferred_location'=>$this->input->post('preferred_location'),
-                'interview_timing'=>$this->input->post('interview_timing'),
-                'educational_gap_year'=>$this->input->post('educational_gap_year'),
-                'career_gap_year'=>$this->input->post('career_gap_year'),
-                'team_size_name'=>$this->input->post('team_size_name'),
-                'team_contact_no'=>$this->input->post('team_contact_no'),
-		'profile_pic'=>$profilePic
-            );
+	    $primary=$this->input->post('primary_other_skils');
+	    $secondary=$this->input->post('secondary_other_skils');
+	    //echo $test;exit;
+
+	    if($primary==null)
+	    {
+		$primary="NULL";
+	    }
+	    else {
+		$primary=$this->input->post('primary_other_skils');
+	    }
+	    
+	    if($secondary==null)
+	    {
+	       $secondary='NULL';
+	    }
+	    else {
+		$secondary=$this->input->post('secondary_other_skils');
+	    }
+	    if($this->input->post('SecondarySkills')=="")
+		    {
+                        $data= array(
+                           'candidate_name'=>$this->input->post('candidate_name'),
+                           'mobile_number'=>$this->input->post('mobile_number'),
+                           'mail_id'=>$this->input->post('mail_id'),
+                           'skills'=>implode(",",$this->input->post('skills')),
+                           'primary_other_skils'=>$primary,
+                           'total_exp_year'=>$this->input->post('total_exp_year'),
+                           'total_exp_month'=>$this->input->post('total_exp_month'),
+                           'relevant_exp'=>$this->input->post('relevant_exp'),
+                           'notice_period'=>$this->input->post('notice_period'),
+                           'current_ctc'=>$this->input->post('current_ctc'),
+                           'expected_ctc'=>$this->input->post('expected_ctc'),
+                           'day'=>$this->input->post('day'),
+                           'month'=>$this->input->post('month'),
+                           'year'=>$this->input->post('year'),
+                           'pan_card_no'=>$this->input->post('pan_card_no'),
+                           'pan_card_attach'=>$filePath,
+                           'language_known'=>implode(",",$this->input->post('language_known')),
+                           'current_location'=>$this->input->post('current_location'),
+                           'preferred_location'=>$this->input->post('preferred_location'),
+                           'interview_timing'=>$this->input->post('interview_timing'),
+                           'educational_gap_year'=>$this->input->post('educational_gap_year'),
+                           'career_gap_year'=>$this->input->post('career_gap_year'),
+                           'team_size_name'=>$this->input->post('team_size_name'),
+                           'team_contact_no'=>$this->input->post('team_contact_no'),
+                           'profile_pic'=>$profilePic
+                        );
+                                   
+                    }
+                    else
+                        {
+                            $data= array(
+                                'candidate_name'=>$this->input->post('candidate_name'),
+                                'mobile_number'=>$this->input->post('mobile_number'),
+                                'mail_id'=>$this->input->post('mail_id'),
+                                'skills'=>implode(",",$this->input->post('skills')),
+                                'primary_other_skils'=>$primary,
+                                'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
+                                'secondary_other_skils'=>$secondary,
+                                'total_exp_year'=>$this->input->post('total_exp_year'),
+                                'total_exp_month'=>$this->input->post('total_exp_month'),
+                                'relevant_exp'=>$this->input->post('relevant_exp'),
+                                'notice_period'=>$this->input->post('notice_period'),
+                                'current_ctc'=>$this->input->post('current_ctc'),
+                                'expected_ctc'=>$this->input->post('expected_ctc'),
+                                'day'=>$this->input->post('day'),
+                                'month'=>$this->input->post('month'),
+                                'year'=>$this->input->post('year'),
+                                'pan_card_no'=>$this->input->post('pan_card_no'),
+                                'pan_card_attach'=>$filePath,
+                                'language_known'=>implode(",",$this->input->post('language_known')),
+                                'current_location'=>$this->input->post('current_location'),
+                                'preferred_location'=>$this->input->post('preferred_location'),
+                                'interview_timing'=>$this->input->post('interview_timing'),
+                                'educational_gap_year'=>$this->input->post('educational_gap_year'),
+                                'career_gap_year'=>$this->input->post('career_gap_year'),
+                                'team_size_name'=>$this->input->post('team_size_name'),
+                                'team_contact_no'=>$this->input->post('team_contact_no'),
+                                'profile_pic'=>$profilePic
+                             );
+                        }
+	    
+//            $data= array(
+//                'candidate_name'=>$this->input->post('candidate_name'),
+//                'mobile_number'=>$this->input->post('mobile_number'),
+//                'mail_id'=>$this->input->post('mail_id'),
+//                'skills'=>implode(",",$this->input->post('skills')),
+//                'total_exp_year'=>$this->input->post('total_exp_year'),
+//		'total_exp_month'=>$this->input->post('total_exp_month'),
+//                'relevant_exp'=>$this->input->post('relevant_exp'),
+//                'notice_period'=>$this->input->post('notice_period'),
+//                'current_ctc'=>$this->input->post('current_ctc'),
+//                'expected_ctc'=>$this->input->post('expected_ctc'),
+//                'day'=>$this->input->post('day'),
+//                'month'=>$this->input->post('month'),
+//                'year'=>$this->input->post('year'),
+//                'pan_card_no'=>$this->input->post('pan_card_no'),
+//                'pan_card_attach'=>$filePath,
+//                'language_known'=>implode(",",$this->input->post('language_known')),
+//                'current_location'=>$this->input->post('current_location'),
+//                'preferred_location'=>$this->input->post('preferred_location'),
+//                'interview_timing'=>$this->input->post('interview_timing'),
+//                'educational_gap_year'=>$this->input->post('educational_gap_year'),
+//                'career_gap_year'=>$this->input->post('career_gap_year'),
+//                'team_size_name'=>$this->input->post('team_size_name'),
+//                'team_contact_no'=>$this->input->post('team_contact_no'),
+//		'profile_pic'=>$profilePic
+//            );
             $select = $this->db->insert('emp_candidate_details',$data);
             $getHeadId=$this->db->insert_id($select);
             

@@ -25,22 +25,65 @@
                 <label>Email <span style="color:#EB8B11">*</span></label>
                 <input class="form-control input-md" name="email" type="text" placeholder="Email">
             </div>
-            <div class="form-group">
-                <label>Skills <span style="color:#EB8B11">*</span></label>
-                <select multiple class="form-control chzn-select input-sm" name="skill[]">
-                    <option>C</option>
-                    <option>C++</option>
-                    <option>Java</option>
-                    <option>Dot Net</option>
-                    <option>C#</option>
-                    <option>PHP</option>
-                    <option>Python</option>
-                    <option>Perl</option>
-                    <option>Ruby</option>
-                    <option>Javascript</option>
-                    <option>SQL</option>
-                </select>
-            </div>
+            <!--<div class="form-group">-->
+            <!--    <label>Skills <span style="color:#EB8B11">*</span></label>-->
+            <!--    <select multiple class="form-control chzn-select input-sm" name="skill[]">-->
+            <!--        <option>C</option>-->
+            <!--        <option>C++</option>-->
+            <!--        <option>Java</option>-->
+            <!--        <option>Dot Net</option>-->
+            <!--        <option>C#</option>-->
+            <!--        <option>PHP</option>-->
+            <!--        <option>Python</option>-->
+            <!--        <option>Perl</option>-->
+            <!--        <option>Ruby</option>-->
+            <!--        <option>Javascript</option>-->
+            <!--        <option>SQL</option>-->
+            <!--    </select>-->
+            <!--</div>-->
+	    
+	    <div class="form-group">
+                                <label>Primary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="primaryChange($(this))" name="skills[]">
+                                  <option>C</option>
+                                  <option>C++</option>
+                                  <option>Java</option>
+                                  <option>Dot Net</option>
+                                  <option>C#</option>
+                                  <option>PHP</option>
+                                  <option>Python</option>
+                                  <option>Perl</option>
+                                  <option>Ruby</option>
+                                  <option>Javascript</option>
+                                  <option>SQL</option>
+								  <option value="Others">Others</option>
+                                </select>
+                            </div>
+							 <div class="form-group primary hide">
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control primaryName input-md" value="<?php //echo $getApplicantDetails[0]['primary_other_skils'];?>" name="" type="text" placeholder="primary other skils">
+                            </div>
+							<div class="form-group">
+                                <label>Secondary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="secondaryChange($(this))" name="SecondarySkills[]">
+                                  <option>C</option>
+                                  <option>C++</option>
+                                  <option>Java</option>
+                                  <option>Dot Net</option>
+                                  <option>C#</option>
+                                  <option>PHP</option>
+                                  <option>Python</option>
+                                  <option>Perl</option>
+                                  <option>Ruby</option>
+                                  <option>Javascript</option>
+                                  <option>SQL</option>
+								  <option  value="Others">Others</option>
+                                </select>
+                            </div>
+							<div class="form-group secondary hide" >
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control secondaryName input-md" value="<?php echo $getApplicantDetails[0]['secondary_other_skils'];?>" name="" type="text" placeholder="secondary other skils">
+                            </div>
 	    
 	    <!--<div class="form-group">
                                 <label>Total Exp</label>
@@ -403,14 +446,38 @@
                         }
                     }
                 },                
-		'skill[]': {
-		    validators: {
-			
-			notEmpty: {
-			    message: 'The Skill is required and can\'t be empty'
-			},
-		    }
-		},	    	    
+		//'skill[]': {
+		//    validators: {
+		//	
+		//	notEmpty: {
+		//	    message: 'The Skill is required and can\'t be empty'
+		//	},
+		//    }
+		//},
+		'skills[]': {
+					validators: {
+					
+					notEmpty: {
+						message: 'The Skill is required and can\'t be empty'
+					},
+					}
+				},
+				'primary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The Primary other skills'
+                       },
+                   }
+				},
+				'secondary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The secondary other skills'
+                       },
+                   }
+               },
             }
         });        
     });
@@ -428,4 +495,65 @@
 	    var data=document.getElementById("ProfileImgPreview").src = oFREvent.target.result;
 	};
     }
+    function primaryChange($this)
+   {
+	   
+		var values=$this.val();
+		if(values!=null)
+		{
+			
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".primary").removeClass("hide");
+				$(".primaryName").attr("name","primary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "primary_other_skils");
+			
+			}
+			else
+			{			
+				$(".primaryName").removeAttr("name");
+				$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
+				$(".primary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".primaryName").removeAttr("name");
+			$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
+			$(".primary").addClass("hide");
+		}
+		
+   }
+   function secondaryChange($this)
+   {
+		
+		var values=$this.val();
+		if(values!=null)
+		{
+			
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".secondary").removeClass("hide");
+				$(".secondaryName").attr("name","secondary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "secondary_other_skils");
+			
+			}
+			else
+			{			
+				$(".secondaryName").removeAttr("name");
+				$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
+				$(".secondary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".secondaryName").removeAttr("name");
+			$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
+			$(".secondary").addClass("hide");
+		}
+		
+   }
+
 </script>

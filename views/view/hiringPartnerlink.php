@@ -35,7 +35,7 @@
 </style>
 <div  class="container" style="padding-top: 80px;">
     <center>
-        <a class="button mobilesize" href="#candidate">Candidate Details</a>&nbsp;&nbsp;
+        <a class="button mobilesize" href="#candidate">Candiate Details</a>&nbsp;&nbsp;
         <a class="button mobilesize" href="#employement">Employement Details</a>&nbsp;&nbsp;
         <a class="button mobilesize" href="#team">Team size</a>&nbsp;&nbsp;
         <a class="button mobilesize" href="#education">Educational Details</a>&nbsp;&nbsp;
@@ -50,7 +50,7 @@
                             <div class="col-md-6 col-md-offset-3">
                            
                             <div class="form-group">
-                              <h2 class="headingLine" id="candidate">Candidate Details</h2>
+                              <h2 class="headingLine" id="candidate">Candiate Details</h2>
                             </div>
                             
                             <div class="form-group">
@@ -108,9 +108,27 @@
                                 <label>Email ID <span style="color:#EB8B11">*</span></label>
                                 <input class="form-control input-md" value="<?php echo $getApplicantDetails[0]['mail_id'];?>" name="mail_id" type="text" placeholder="Email">
                             </div>
-                            <div class="form-group">
-                                <label>Skills <span style="color:#EB8B11">*</span></label>
-                                <select multiple class="form-control chzn-select input-sm" name="skills[]">
+                            <!--<div class="form-group">-->
+                            <!--    <label>Skills <span style="color:#EB8B11">*</span></label>-->
+                            <!--    <select multiple class="form-control chzn-select input-sm" name="skills[]">-->
+                            <!--      <option>C</option>-->
+                            <!--      <option>C++</option>-->
+                            <!--      <option>Java</option>-->
+                            <!--      <option>Dot Net</option>-->
+                            <!--      <option>C#</option>-->
+                            <!--      <option>PHP</option>-->
+                            <!--      <option>Python</option>-->
+                            <!--      <option>Perl</option>-->
+                            <!--      <option>Ruby</option>-->
+                            <!--      <option>Javascript</option>-->
+                            <!--      <option>SQL</option>-->
+                            <!--    </select>-->
+                            <!--</div>-->
+                            
+			    
+			     <div class="form-group">
+                                <label>Primary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="primaryChange($(this))" name="skills[]">
                                   <option>C</option>
                                   <option>C++</option>
                                   <option>Java</option>
@@ -122,9 +140,34 @@
                                   <option>Ruby</option>
                                   <option>Javascript</option>
                                   <option>SQL</option>
+								  <option value="Others">Others</option>
                                 </select>
                             </div>
-                            
+							 <div class="form-group primary hide">
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control primaryName input-md" value="<?php echo $getApplicantDetails[0]['primary_other_skils'];?>" name="" type="text" placeholder="primary other skils">
+                            </div>
+							<div class="form-group">
+                                <label>Secondary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="secondaryChange($(this))" name="SecondarySkills[]">
+                                  <option>C</option>
+                                  <option>C++</option>
+                                  <option>Java</option>
+                                  <option>Dot Net</option>
+                                  <option>C#</option>
+                                  <option>PHP</option>
+                                  <option>Python</option>
+                                  <option>Perl</option>
+                                  <option>Ruby</option>
+                                  <option>Javascript</option>
+                                  <option>SQL</option>
+								  <option  value="Others">Others</option>
+                                </select>
+                            </div>
+							<div class="form-group secondary hide" >
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control secondaryName input-md" value="<?php echo $getApplicantDetails[0]['secondary_other_skils'];?>" name="" type="text" placeholder="secondary other skils">
+                            </div>
 			    
 			      <div class="">
                                 <label>Total Experience</label>
@@ -175,55 +218,10 @@
                                  </div>
                             </div>
 
-			      <div class="">
-                                <label>Revelant Exp</label>
-                                <div class="row">
-                                <div class="form-group col-md-4">
-                                  <select name="relevant_exp_year" class="form-control">
-                                     <option selected>In Year</option>
-                                    <option value="1years">1 Year</option>
-                                    <option value="2years">2 Years</option>
-                                    <option value="3years">3 Years</option>
-                                    <option value="4years">4 Years</option>
-                                    <option value="5years">5 Years</option>
-                                    <option value="6years">6 Years</option>
-                                    <option value="7years">7 Years</option>
-                                    <option value="8years">8 Years</option>
-                                    <option value="9years">9 Years</option>
-                                    <option value="10years">10 Years</option>
-                                    <option value="11years">11 Years</option>
-                                    <option value="12years">12 Years</option>
-                                    <option value="12years">13 Years</option>
-                                    <option value="14years">14 Years</option>
-                                    <option value="15years">15 Years</option>
-                                    <option value="16years">16 Years</option>
-                                    <option value="17years">17 Years</option>
-                                    <option value="18years">18 Years</option>
-                                    <option value="19years">19 Years</option>
-                                    <option value="20years">20 Years</option>
-                                    <option value="21years">21 Years</option>
-                                  </select>
-                                </div>
-                                 <div class="form-group col-md-4">
-                                  <select name="relevant_exp_month" class="form-control">
-                                    <option selected>In Months</option>
-				    <option value="0months">0 Months</option>
-                                    <option value="1months">1 Months</option>
-                                    <option value="2months">2 Months</option>
-                                    <option value="3months">3 Months</option>
-                                    <option value="4months">4 Months</option>
-                                    <option value="5months">5 Months</option>
-                                    <option value="6months">6 Months</option>
-                                    <option value="7months">7Months</option>
-                                    <option value="8months">8 Months</option>
-                                    <option value="9months">9 Months</option>
-                                    <option value="10months">10 Months</option>
-                                    <option value="11months">11 Months</option>
-                                  </select>
-                                </div>
-                                 </div>
+                            <div class="form-group">
+                              <label>Revelant Exp</label>
+                                <input class="form-control input-md" name="relevant_exp" type="text" placeholder="Revelant Exp">
                             </div>
-
                            
 			    <div class="">
                                 <label>Notice Period</label>
@@ -250,7 +248,7 @@
                                 <label>Current CTC <span style="color:#EB8B11">*</span></label>
                                 <input class="form-control input-md" name="current_ctc" type="text" placeholder="Current CTC">
                             </div>-->
-			      <div class="">
+			                                     <div class="">
                                 <label>Current CTC</label>
                                 <div class="row">
                                 <div class="form-group col-md-4">
@@ -313,67 +311,20 @@
                                 <input class="form-control input-md" name="expected_ctc" type="text" placeholder="Expected CTC">
                             </div>-->
 			    
-			     
-			     
-			     
-			       <div class="">
-                                <label>Expected CTC</label>
-                                <div class="row">
-                                <div class="form-group col-md-4">
-                                  <select name="expected_ctc_lakhs" class="form-control">
-                                     <option selected>In Lakhs</option>
-                                    <option value="1">1 Lakhs</option>
-                                    <option value="2">2 Lakhs</option>
-                                    <option value="3">3 Lakhs</option>
-                                    <option value="4">4 Lakhs</option>
-                                    <option value="5">5 Lakhs</option>
-                                    <option value="6">6 Lakhs</option>
-                                    <option value="7">7 Lakhs</option>
-                                    <option value="8">8 Lakhs</option>
-                                    <option value="9">9 Lakhs</option>
-                                    <option value="10">10 Lakhs</option>
-                                    <option value="11">11 Lakhs</option>
-                                    <option value="12">12 Lakhs</option>
-                                    <option value="12">13 Lakhs</option>
-                                    <option value="14">14 Lakhs</option>
-                                    <option value="15">15 Lakhs</option>
-                                    <option value="16">16 Lakhs</option>
-                                    <option value="17">17 Lakhs</option>
-                                    <option value="18">18 Lakhs</option>
-                                    <option value="19">19 Lakhs</option>
-                                    <option value="20">20 Lakhs</option>
-                                  
-                                  </select>
-                                </div>
-                                 <div class="form-group col-md-4">
-                                  <select name="expected_ctc_thousands" class="form-control">
-                                    <option selected>In Thousands</option>
-				    <option value="0">0 Thousands</option>
-                                    <option value="1">1 Thousands</option>
-                                    <option value="2">2 Thousands</option>
-                                    <option value="3">3 Thousands</option>
-                                    <option value="4">4 Thousands</option>
-                                    <option value="5">5 Thousands</option>
-                                    <option value="6">6 Thousands</option>
-                                    <option value="7">7 Thousands</option>
-                                    <option value="8">8 Thousands</option>
-                                    <option value="9">9 Thousands</option>
-                                    <option value="10">10 Thousands</option>
-                                    <option value="11">11 Thousands</option>
-				    <option value="12">12 Thousands</option>
-                                    <option value="13">13 Thousands</option>
-                                    <option value="14">14 Thousands</option>
-                                    <option value="15">15 Thousands</option>
-                                    <option value="16">16 Thousands</option>
-                                    <option value="17">17 Thousands</option>
-                                    <option value="18">18 Thousands</option>
-                                    <option value="19">19 Thousands</option>
-                                    <option value="20">20 Thousands</option>
-                                  </select>
-                                </div>
-                                 </div>
-                            </div>
-
+			     <div class="form-group">
+			      <label>Expected CTC</label>
+				    <select name="expected_ctc" class="form-control">
+				      <option selected>Expected CTC</option>
+				      <option value="100000">100000-200000</option>
+				      <option value="200000">200000-300000</option>
+				      <option value="300000">300000-400000</option>
+				      <option value="400000">400000-500000</option>
+				      <option value="500000">500000-600000</option>
+				      <option value="600000">600000-700000</option>
+				      <option value="700000">700000-800000</option>
+				      <option value="800000">800000 Above</option>
+				     </select>
+				  </div>
                             <div class="">
                                 <label>Date Of Birth</label>
                                 <div class="row">
@@ -538,146 +489,21 @@
                               <label>Interview Timing</label>
                                 <input class="form-control input-md" name="interview_timing" id="datetimepicker1" type="text" placeholder="Interview Timing">
                             </div>
-                           <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label>Educational Gap(in years)</label>
                                 <input class="form-control input-md" name="educational_gap_year" type="text" placeholder="Educational Gap(in years)">
                             </div>
                             <div class="form-group">
                                 <label>Carrier Gap(in years)</label>
                                 <input class="form-control input-md" name="career_gap_year" type="text" placeholder="Year">
-                            </div>-->
-			    <div class="">
-                                <label>Educational Gap(in years)</label>
-                                <div class="row">
-                                <div class="form-group col-md-4">
-                                  <select name="educational_gap_year" class="form-control">
-                                     <option selected>In Year</option>
-				    <option value="0years">0 Year</option>
-                                    <option value="1years">1 Year</option>
-                                    <option value="2years">2 Years</option>
-                                    <option value="3years">3 Years</option>
-                                    <option value="4years">4 Years</option>
-                                    <option value="5years">5 Years</option>
-                                    <option value="6years">6 Years</option>
-                                    <option value="7years">7 Years</option>
-                                    <option value="8years">8 Years</option>
-                                    <option value="9years">9 Years</option>
-                                    <option value="10years">10 Years</option>
-                                    <option value="11years">11 Years</option>
-                                    <option value="12years">12 Years</option>
-                                    <option value="12years">13 Years</option>
-                                    <option value="14years">14 Years</option>
-                                    <option value="15years">15 Years</option>
-                                    <option value="16years">16 Years</option>
-                                    <option value="17years">17 Years</option>
-                                    <option value="18years">18 Years</option>
-                                    <option value="19years">19 Years</option>
-                                    <option value="20years">20 Years</option>
-                                    <option value="21years">21 Years</option>
-                                  </select>
-                                </div>
-                                 <div class="form-group col-md-4">
-                                  <select name="educational_gap_month" class="form-control">
-                                    <option selected>In Months</option>
-				    <option value="0months">0 Months</option>
-                                    <option value="1months">1 Months</option>
-                                    <option value="2months">2 Months</option>
-                                    <option value="3months">3 Months</option>
-                                    <option value="4months">4 Months</option>
-                                    <option value="5months">5 Months</option>
-                                    <option value="6months">6 Months</option>
-                                    <option value="7months">7 Months</option>
-                                    <option value="8months">8 Months</option>
-                                    <option value="9months">9 Months</option>
-                                    <option value="10months">10 Months</option>
-                                    <option value="11months">11 Months</option>
-                                  </select>
-                                </div>
-                                 </div>
-                            </div>
-			      <div class="">
-                                <label>Carrier Gap(in years)</label>
-                                <div class="row">
-                                <div class="form-group col-md-4">
-                                  <select name="career_gap_year" class="form-control">
-                                     <option selected>In Year</option>
-				    <option value="0years">0 Year</option>
-                                    <option value="1years">1 Year</option>
-                                    <option value="2years">2 Years</option>
-                                    <option value="3years">3 Years</option>
-                                    <option value="4years">4 Years</option>
-                                    <option value="5years">5 Years</option>
-                                    <option value="6years">6 Years</option>
-                                    <option value="7years">7 Years</option>
-                                    <option value="8years">8 Years</option>
-                                    <option value="9years">9 Years</option>
-                                    <option value="10years">10 Years</option>
-                                    <option value="11years">11 Years</option>
-                                    <option value="12years">12 Years</option>
-                                    <option value="12years">13 Years</option>
-                                    <option value="14years">14 Years</option>
-                                    <option value="15years">15 Years</option>
-                                    <option value="16years">16 Years</option>
-                                    <option value="17years">17 Years</option>
-                                    <option value="18years">18 Years</option>
-                                    <option value="19years">19 Years</option>
-                                    <option value="20years">20 Years</option>
-                                    <option value="21years">21 Years</option>
-                                  </select>
-                                </div>
-                                 <div class="form-group col-md-4">
-                                  <select name="career_gap_month" class="form-control">
-                                    <option selected>In Months</option>
-				    <option value="0months">0 Months</option>
-                                    <option value="1months">1 Months</option>
-                                    <option value="2months">2 Months</option>
-                                    <option value="3months">3 Months</option>
-                                    <option value="4months">4 Months</option>
-                                    <option value="5months">5 Months</option>
-                                    <option value="6months">6 Months</option>
-                                    <option value="7months">7Months</option>
-                                    <option value="8months">8 Months</option>
-                                    <option value="9months">9 Months</option>
-                                    <option value="10months">10 Months</option>
-                                    <option value="11months">11 Months</option>
-                                  </select>
-                                </div>
-                                 </div>
                             </div>
                             <div id="team" class="form-group">
                                 <h2 class="headingLine" >Team Size</h2>
                             </div>
-                            <!--<div class="form-group">
+                            <div class="form-group">
                                 <label>Number</label>
                                 <input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">
-                            </div>-->
-			        <div class="form-group">
-                                <label>Select Your Team size</label>
-				<select class="form-control input-sm" name="team_size_name">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				  <option value="9">9</option>
-				  <option value="10">10</option>
-				  <option value="11">11</option>
-				  <option value="12">12</option>
-				  <option value="13">13</option>
-				  <option value="14">14</option>
-				  <option value="15">15</option>
-				  <option value="16">16</option>
-				  <option value="17">17</option>
-				  <option value="18">18</option>
-				  <option value="19">19</option>
-				  <option value="20">20</option>
-				</select>
-                                <!--<input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">-->
                             </div>
-
                             <div class="form-group">
                                 <label>Contact Number <span style="color:#EB8B11">*</span> </label>
                                 <input class="form-control input-md" name="team_contact_no" type="text" placeholder="Contact Number">
@@ -903,14 +729,14 @@
 			}
 		    }
                 },                
-		'skills[]': {
-		    validators: {
-			
-			notEmpty: {
-			    message: 'The Skill is required and can\'t be empty'
-			},
-		    }
-		},
+		//'skills[]': {
+		//    validators: {
+		//	
+		//	notEmpty: {
+		//	    message: 'The Skill is required and can\'t be empty'
+		//	},
+		//    }
+		//},
                 total_exp: {
                     validators: {
                         notEmpty: {
@@ -1160,6 +986,30 @@
                         },
                     }
                 },
+		'skills[]': {
+					validators: {
+					
+					notEmpty: {
+						message: 'The Skill is required and can\'t be empty'
+					},
+					}
+				},
+				'primary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The Primary other skills'
+                       },
+                   }
+				},
+				'secondary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The secondary other skills'
+                       },
+                   }
+               },
 //		'reasonDesc[]': {
 //                    group: 'td',
 //                    validators: {
@@ -1340,5 +1190,65 @@
 	$('*#edu_duration_to').datetimepicker({
 	    format: 'DD-MMM-YYYY'
 	}); 
-    }        
+    }
+       function primaryChange($this)
+   {
+	   
+		var values=$this.val();
+		if(values!=null)
+		{
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".primary").removeClass("hide");
+				$(".primaryName").attr("name","primary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "primary_other_skils");
+			
+			}
+			else
+			{			
+				
+				$('#form_validation').bootstrapValidator('revalidateField',"primary_other_skils");
+				$(".primaryName").removeAttr("name");
+				$(".primary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".primaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
+			$(".primary").addClass("hide");
+		}
+		
+   }
+   function secondaryChange($this)
+   {
+		
+		var values=$this.val();
+		if(values!=null)
+		{
+			
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".secondary").removeClass("hide");
+				$(".secondaryName").attr("name","secondary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "secondary_other_skils");
+			
+			}
+			else
+			{
+				$('#form_validation').bootstrapValidator('revalidateField', "secondary_other_skils");
+				$(".secondaryName").removeAttr("name");
+				$(".secondary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".secondaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
+			$(".secondary").addClass("hide");
+		}
+		
+   }
 </script>
