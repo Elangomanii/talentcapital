@@ -92,11 +92,87 @@ class talentModel extends CI_Model {
 	return count($result);
         }
     
+        function sendUserCredential(){
+	$userEmail = $_POST['userEmail'];
+	$userName = $_POST['userName'];
+	$statusYN = $_POST['statusYN'];
+	$this->db->where('email', $userEmail);
+	$data = array(
+	    'status' => $statusYN
+	);
+	$this->db->update('login_auth', $data);
+	$this->db->affected_rows();
+	if($statusYN=="Y"){
+	    $this->userEmailSending($userEmail,$userName,$statusYN);
+	}else{
+	    $this->userRejectEmailSending($userEmail,$userName,$statusYN);
+	}
+	
+    }
+    function userEmailSending($userEmail,$userName,$statusYN)
+    {
+	$body ="<html>
+		    <head>
+			<title>Welcome to Talent Capital</title>
+		    </head>
+		    <body>
+			<h4>Dear $userName,</h4>
+			<p>You have been Activated.</p>
+			<p> <a href='".base_url()."vendorlogin/index/hiringPartner' >Click Here</a> </p>
+			<br>
+			<p>Regards,</p>
+			<p>Talent capital Portal,</p>
+			<p>To contact the Talent Capital India Team, click the link below:</p>
+			<p>https://www.talentcapitalindia.com/support</p>
+			<img src='http://appimagine.com/talentcapital/assets/images/logo.png' style='width:100px'>
+		    </body>
+		</html>";
+	$this->email->set_newline("\r\n");
+	$this->email->from('donotreply@talentcapitalindia.com'); // change it to yours
+	$this->email->to($userEmail);// change it to yours
+	$this->email->subject('Talent Capital India - activation Mail');
+	$this->email->message($body);
+	
+	if($this->email->send()){
+	    if($statusYN=="Y"){
+		$this->session->set_flashdata('status', 'User has been approved successfully');
+	    }
+	}else{
+	    $this->session->set_flashdata('status', 'User has not approved');	
+	}
+    }
     
-    
-    
-    
-    
+    function userRejectEmailSending($userEmail,$userName,$statusYN)
+    {
+	$body ="<html>
+		    <head>
+			<title>Welcome to Talent Capital</title>
+		    </head>
+		    <body>
+			<h4>Dear $userName,</h4>
+			<p>You have been Rejected.</p>
+			<br>
+			<p>Regards,</p>
+			<p>Talent capital Portal,</p>
+			<p>To contact the Talent Capital India Team, click the link below:</p>
+			<p>https://www.talentcapitalindia.com/support</p>
+			<img src='http://appimagine.com/talentcapital/assets/images/logo.png' style='width:100px'>
+		    </body>
+		</html>";
+	$this->email->set_newline("\r\n");
+	$this->email->from('donotreply@talentcapitalindia.com'); // change it to yours
+	$this->email->to($userEmail);// change it to yours
+	$this->email->subject('Talent Capital India - activation Mail');
+	$this->email->message($body);
+	
+	if($this->email->send()){
+	    if($statusYN=="N"){
+		$this->session->set_flashdata('status', 'User has been Rejected successfully');
+	    }
+	}else{
+	    $this->session->set_flashdata('status', 'User has not approved');	
+	}
+    }
     
     //USER VIEW ENDS
     
