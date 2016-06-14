@@ -38,6 +38,14 @@
                                     <div class="form-group">
                                         <h2 class="headingLine" id="candidate">Add User</h2>
                                     </div>
+				    <div class="form-group">
+                                        <label>Role</label>
+                                        <select name="user_role" class="form-control">
+					    <option selected disabled>Select Role</option>
+					    <option value="Admin">Admin</option>
+					    <option value="InternalEmployee">Internal Employee</option>
+					</select>
+				    </div>
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input name="username"  class="form-control input-md" type="text" placeholder="Name">
@@ -56,7 +64,7 @@
                                     </div>
                                    
                                     <div class="form-group">
-                                       <img src="<?php echo base_url();?>assets/images/user_icon.png" class="img-resposive" width="256" height="256" id="PanImgPreview">
+                                       <img src="<?php echo base_url();?>assets/images/user_icon.jpg" class="img-resposive" width="256" height="256" id="PanImgPreview">
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
@@ -98,6 +106,18 @@
                 validating: 'fa fa-refresh'
             },
     fields: {
+	user_role:
+		{
+		    trigger:'blur',
+		    validators:
+		    {
+			notEmpty:
+			{
+			    message: 'Role is required'
+			},
+			
+		    }
+		},
         username:
 		{
 		    trigger:'blur',
