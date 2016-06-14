@@ -36,10 +36,12 @@ class talentModel extends CI_Model {
             $data = $this->upload->data();
             $filePath=$folderPath.$data['file_name'];
 	$data = array(
+	    'role'=>$this->input->post('user_role'),
 	    'user_name'=>$this->input->post('username'),
 	    'password'=>$this->input->post('password'),
 	    'email'=>$this->input->post('email'),
 	    'user_image'=>$filePath,
+	    'status'=>'Y',
 	    );
 	      
 	    $this->db->insert("login_auth",$data);
