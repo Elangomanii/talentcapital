@@ -37,6 +37,10 @@
                                     <div class="form-group">
                                         <h2 class="headingLine" id="candidate">Edit User</h2>
                                     </div>
+				    <div class="form-group">
+                                        <label>Role</label>
+                                        <input readonly="" value="<?php echo $userEdit[0]['role'] ?>" name="user_role"  class="form-control input-md" type="text">
+				    </div>
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input readonly="" value="<?php echo $userEdit[0]['user_name'] ?>" name="username"  class="form-control input-md" type="text" placeholder="Name">
