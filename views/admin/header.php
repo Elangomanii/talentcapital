@@ -153,6 +153,17 @@
 							
 						</ul>-->
 					</li>
+					<li class="has-sub <?php if($this->uri->segment(2)=="internalEmployeeView"){echo "active";}?>">
+						<a href="<?php echo site_url('admin/internalEmployeeView');?>">
+						   <!-- <b class="caret pull-right"></b>-->
+						    <!--<i class="fa fa-file-o  text-warning"></i>-->
+						    <span>Internal Employee</span> 
+						</a>
+						<!--<ul class="sub-menu">
+							<li><a href="">Employee</a></li>
+							
+						</ul>-->
+					</li>
 					<!--<li class="has-sub <?php if($this->uri->segment(2)=="applicant"){echo "active";}?>">
 						<a href="<?php echo site_url('admin/applicant');?>">
 						    <span>Direct Applicant </span>
