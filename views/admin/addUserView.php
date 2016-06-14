@@ -43,6 +43,7 @@ $status = $this->session->flashdata('status');
 						<tr>
 						    <th data-class="expand">Name</th>
 						    <th data-hide="phone,tablet">Email</th>
+						    <th>Approved Y/N</th>
 						    <th>Action</th>
 						</tr>
 						
@@ -51,9 +52,10 @@ $status = $this->session->flashdata('status');
 						<?php if(count($userDetails) > 0)
 							     { foreach($userDetails as $row) {  ?>
 					       
-						<tr class="even gradeC" >
-						    <td style="cursor:pointer;" class="clickable-row" data-href='<?php echo site_url('admin/addUserEditView/'.$row['id'])?>'><u><?php echo $row['user_name']; ?></u></td>					    
-						    <td ><?php echo $row['email']; ?></td>				    
+						<tr class="oddClass even gradeC" >
+						    <td id="USER_NAME" style="cursor:pointer;" class="clickable-row" data-href='<?php echo site_url('admin/addUserEditView/'.$row['id'])?>'><u><?php echo $row['user_name']; ?></u></td>					    
+						    <td id="EMAIL"><?php echo $row['email']; ?></td>
+						    <td ><input type="checkbox" <?php if($row['status']=='Y'){ echo 'checked';}?> class="lcs_check" id="approvedYN"></td>
 						    <td>
 						    <a href="<?php echo site_url('admin/editUser/'.$row['id'])?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> </a>
 						    <a onlclick="userDelete();" href="<?php echo site_url('admin/userDelete/'.$row['id'])?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a></td>
@@ -89,6 +91,7 @@ $status = $this->session->flashdata('status');
 	
 	    
 	$(document).ready(function() {
+	    switcherRefresh();
 	 setTimeout(function(){ $('#alert').remove();}, 5000);
 	    $('#data-table').DataTable( {
 		dom: 'Bfrtip',
@@ -107,5 +110,55 @@ $status = $this->session->flashdata('status');
 	    });
 	});
 	</script>
+	
+	<script type="text/javascript">
+	function switcherRefresh()
+	{
+	    $('.lcs_check').lc_switch('Y','N');
+	    $('.lcs_check').lc_switch();
+	    $('.lcs_wrap').delegate('#approvedYN', 'lcs-statuschange',function() {
+		if($(this).is(":checked")){
+		    var $row = $(this).parents('.oddClass');
+		    bootbox.confirm("Are you sure you want to Approve?", function(confirmed) {
+			if(confirmed){
+			    var statusYN = 'Y';
+			    var userEmail = $row.find('[id="EMAIL"]').text();
+			    var userName = $row.find('[id="USER_NAME"]').text();
+			    $.ajax({
+				type: "POST",
+				url: "<?=site_url('admin/sendUserCredential')?>",
+				dataType:"json",
+				data:{userEmail:userEmail,userName:userName,statusYN:statusYN} ,                    
+				success: function (json) {
+				    window.location.reload();
+				},
+			    });
+			}
+		    });				
+		}
+		else{
+		    var $row = $(this).parents('.oddClass');
+		    bootbox.confirm("Are you sure you want to Reject?", function(confirmed) {
+			if(confirmed){
+			    var statusYN = 'N';
+			    var userEmail = $row.find('[id="EMAIL"]').text();
+			    alert(userEmail);
+			    var userName = $row.find('[id="USER_NAME"]').text();
+			    alert(userName);
+			    $.ajax({
+				type: "POST",
+				url: "<?=site_url('admin/sendUserCredential')?>",
+				dataType:"json",
+				data:{userEmail:userEmail,userName:userName,statusYN:statusYN} ,                    
+				success: function (json) {
+				    window.location.reload();
+				},
+			    });
+			}
+		    });		    
+		}
+	    });	
+	}
+    </script>
 	
 	
