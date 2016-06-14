@@ -44,6 +44,7 @@ $status = $this->session->flashdata('status');
 						    <th data-class="expand">Name</th>
 						    <th data-hide="phone,tablet">Email</th>
 						    <th>Approved Y/N</th>
+						    <th>Role</th>
 						    <th>Action</th>
 						</tr>
 						
@@ -56,6 +57,7 @@ $status = $this->session->flashdata('status');
 						    <td id="USER_NAME" style="cursor:pointer;" class="clickable-row" data-href='<?php echo site_url('admin/addUserEditView/'.$row['id'])?>'><u><?php echo $row['user_name']; ?></u></td>					    
 						    <td id="EMAIL"><?php echo $row['email']; ?></td>
 						    <td ><input type="checkbox" <?php if($row['status']=='Y'){ echo 'checked';}?> class="lcs_check" id="approvedYN"></td>
+						    <td ><?php echo $row['role']; ?></td>
 						    <td>
 						    <a href="<?php echo site_url('admin/editUser/'.$row['id'])?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> </a>
 						    <a onlclick="userDelete();" href="<?php echo site_url('admin/userDelete/'.$row['id'])?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a></td>
