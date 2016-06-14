@@ -552,6 +552,11 @@ class admin extends CI_Controller {
         $result=$this->talentModel->sendCredentialToUser();
 	echo json_encode($result);	
     }
+    
+    function sendUserCredential(){
+        $result=$this->talentModel->sendUserCredential();
+	echo json_encode($result);	
+    }
 
 
     function vendorAddUser(){
