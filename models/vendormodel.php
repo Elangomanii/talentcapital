@@ -5,10 +5,12 @@ class vendormodel extends CI_Model {
     
     function checkVendorLogin()
     {
+	
 	$user_id = $this->input->post('email');
 	$password = $this->input->post('password');
 	$sql="SELECT * FROM vendor where email='$user_id' AND password='$password' and status='Y'";
 	$query = $this->db->query($sql, $return_object = TRUE);
+	
 	if($query->num_rows > 0){
 	    return $query->result_array();
 	}
