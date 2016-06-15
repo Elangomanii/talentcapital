@@ -224,11 +224,14 @@ class talentcapitalctr extends CI_Controller {
 	function hiringPartnerLink($code){
 	    $data['Vcode'] =  $code;
 	    if(isset($_POST['save'])){
+		//print_r($_POST);
+		//exit;
 		$result=$this->tc_model->hiringPartnerLinkAdd($code);
 		$this->session->set_flashdata('status', 'Your Information has been Succesfully regeistered to talent capital');
 		redirect('talentcapitalctr/successMsg');		
 	    }
 	    else{
+		$data['vendorName']=$this->tc_model->getVendorName($code);
 		$this->load->view('view/header');
 		$this->load->view('view/hiringPartnerlink',$data);
 		$this->load->view('view/footer');		

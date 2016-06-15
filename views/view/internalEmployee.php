@@ -441,7 +441,18 @@
 				  <td><span class='input-group date'><input type="text" placeholder="" name="emp_duration_to[]" id="emp_duration_to" class="form-control input-md table_input input-group datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="Location" name="location[]" class="form-control input-md" type="text"></td>
 				  <td> <textarea name="empReasonDesc[]" id="empReasonDesc" class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file" name="file_employee_upload" id="file_employee_upload" onchange="fileAttachment();">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
                                  <tr class="odd1 hide" id="optionTemplate1">
                                   <td> <input placeholder="Client Company" id="client_comp" class="form-control input-md" type="text" ></td>
@@ -451,7 +462,18 @@
 				  <td><span class='input-group date'><input type="text" placeholder=""id="emp_duration_to" class="form-control input-md table_input input-group datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="Location" id="location" class="form-control input-md" type="text"></td>
 				  <td> <textarea id="empReasonDesc" class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" onclick="removeButton1($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file"  id="file_employee_upload" onchange="fileAttachment();">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" onclick="removeButton1($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
                                
                              
@@ -491,7 +513,18 @@
                                   <td> <input placeholder="University" name="university[]" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Percentage" name="percentage[]" class="form-control input-md" type="text"></td>
 				  <td> <textarea name="reasonDesc[]"  class="form-control input-md" id="reasonDesc" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file" name="file_student_upload" id="PanPreview" onchange="fileAttachment1();">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
                                  <tr class="odd hide" id="optionTemplate">
                                   <td> <input placeholder="Degree" id="degree" class="form-control input-md" type="text"></td>
@@ -501,7 +534,18 @@
                                   <td> <input placeholder="University" id="university" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Percentage" id="percentage" class="form-control input-md" type="text"></td>
 				  <td> <textarea id="reasonDesc"  class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" onclick="removeButton($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file"  id="file_student_upload" onchange="fileAttachment1();">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" onclick="removeButton($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
 			      </tbody>
                             </table>
@@ -824,14 +868,14 @@
                         },
                     }
                 },                
-                'specialisation[]': {
-                    group: 'td',
-                    validators: {
-                        notEmpty: {
-                            message: 'The Specialzation is required and can\'t be empty'
-                        },
-                    }
-                },
+                //'specialisation[]': {
+                //    group: 'td',
+                //    validators: {
+                //        notEmpty: {
+                //            message: 'The Specialzation is required and can\'t be empty'
+                //        },
+                //    }
+                //},
                 'edu_duration_from[]': {
                     group: 'td',
                     trigger:'blur',
@@ -1001,7 +1045,8 @@
         $clone.find('[id="university"]').attr('name', 'university[]');
         $clone.find('[id="percentage"]').attr('name', 'percentage[]');
 	$clone.find('[id="reasonDesc"]').attr('name', 'reasonDesc[]');
-        
+	$clone.find('[id="file_employee_upload"]').attr('name', 'file_employee_upload[]');
+	
         
         
         
@@ -1028,6 +1073,8 @@
 	$name   = $clone.find('[name="reasonDesc[]"]');
 	$('#form_validation').bootstrapValidator('addField', $name);
 	
+	$name   = $clone.find('[name="file_employee_upload[]"]');
+	$('#form_validation').bootstrapValidator('addField', $name);
         datepicker2();
     }
     function removeButton($this) {
@@ -1044,7 +1091,7 @@
         $clone.find('[id="emp_duration_to"]').attr('name', 'emp_duration_to[]');
         $clone.find('[id="location"]').attr('name', 'location[]');
 	$clone.find('[id="empReasonDesc"]').attr('name', 'empReasonDesc[]');
-	
+	$clone.find('[id="file_student_upload"]').attr('name', 'file_student_upload[]');
         
 	$name   = $clone.find('[name="client_comp[]"]');
 	$('#form_validation').bootstrapValidator('addField', $name);
@@ -1066,6 +1113,9 @@
 	
 	$name   = $clone.find('[name="empReasonDesc[]"]');
 	$('#form_validation').bootstrapValidator('addField', $name);
+	
+	$name   = $clone.find('[name="file_student_upload[]"]');
+	$('#form_validation').bootstrapValidator('addField', $name);
 
 
         datepicker1();
@@ -1081,6 +1131,36 @@
 	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
 	};
     }
+    
+    function fileAttachment(){
+        var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById("file_employee_upload").files[0]);
+	oFReader.onload = function (oFREvent) {
+	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
+	};
+    }
+    function fileAttachment1(){
+        var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById("file_student_upload").files[0]);
+	oFReader.onload = function (oFREvent) {
+	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
+	};
+    }
+    function fileAttachment2(){
+        var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById("PanPreview").files[0]);
+	oFReader.onload = function (oFREvent) {
+	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
+	};
+    }
+    function fileAttachment3(){
+        var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById("PanPreview").files[0]);
+	oFReader.onload = function (oFREvent) {
+	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
+	};
+    }
+    
     
     
           function profilePic(){

@@ -133,8 +133,8 @@ $status = $this->session->flashdata('status');
 				  </select>
                                 </div>
                                  <div class="form-group col-md-4">
-			    <?php $month=array('0months','1months','2months','3months','4months','5months','6months','7months','8months','9months','10years','11months') ?> 
-                                  <select disabled name="month" class="form-control">
+			    <?php $years=array('1month','2month','3month','4month','5month','6month','7month','8month','9month','10month','11month','12month','13month','14month','15month','16month','17month','18month','19month','20month') ?> 
+                                  <select disabled name="total_exp_month" class="form-control">
                                     <?php foreach($month as $month){?>
                                     <option value="<?php echo $month;?>" <?php if($employeeEdit[0]['total_exp_month']==$month) echo "selected"?>><?php echo $month;?></option>
                                   <?php }?>
@@ -143,11 +143,36 @@ $status = $this->session->flashdata('status');
                                  
                                  </div>
                             </div>
-
+<!--
                             <div class="form-group">
                               <label>Revelant Exp</label>
                                 <input readonly class="form-control input-md" value="<?php echo $employeeEdit[0]['relevant_exp'];?>" name="relevant_exp" type="text" placeholder="Revelant Exp">
+                            </div>-->
+			    
+			    <div class="">
+                                <label>Revelant Exp</label>
+                                <div class="row">
+                                <div class="form-group col-md-4">
+				     <?php $month=array('0months','1months','2months','3months','4months','5months','6months','7months','8months','9months','10years','11months') ?> 
+                                  <select disabled name="relevant_exp_year" class="form-control">
+				    <?php foreach($years as $years){?>
+                                    <option value="<?php echo $years;?>" <?php if($employeeEdit[0]['relevant_exp_year']==$years) echo "selected"?>><?php echo $years;?></option>
+                                  <?php }?>
+				  </select>
+                                </div>
+                                 <div class="form-group col-md-4">
+				    <?php $years=array('1month','2month','3month','4month','5month','6month','7month','8month','9month','10month','11month','12month','13month','14month','15month','16month','17month','18month','19month','20month') ?> 
+                                  
+                                   <select disabled name="relevant_exp_month" class="form-control">
+                                    <?php foreach($month as $month){?>
+                                    <option value="<?php echo $month;?>" <?php if($employeeEdit[0]['total_exp_month']==$month) echo "selected"?>><?php echo $month;?></option>
+                                  <?php }?>
+                                  </select>
+                                  </select>
+                                </div>
+                                 </div>
                             </div>
+
                         
 			     <div class="">
                                 <label>Notice Period</label>
@@ -836,19 +861,19 @@ $status = $this->session->flashdata('status');
 		}
 	    }
 	},
-	'specialisation[]':
-	{
-	    message: 'Specialization is not valid',
-	    trigger:'blur',
-	    group:'td',
-	    validators:
-	    {
-		notEmpty:
-		{
-		    message: 'Specialztion is required and can\'t be empty'
-		}
-	    }
-	},
+	//'specialisation[]':
+	//{
+	//    message: 'Specialization is not valid',
+	//    trigger:'blur',
+	//    group:'td',
+	//    validators:
+	//    {
+	//	notEmpty:
+	//	{
+	//	    message: 'Specialztion is required and can\'t be empty'
+	//	}
+	//    }
+	//},
 	'edu_duration_from[]':
 	{
 	    message: 'Education Duration From is not valid',

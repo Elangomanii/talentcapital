@@ -93,88 +93,45 @@ class talentModel extends CI_Model {
         $result=$this->db->query($sql)->result();
 	return count($result);
         }
+	//admin profile edit
+	
+	    function getuserDetailEdit($id){
     
-        function sendUserCredential(){
-	$userEmail = $_POST['userEmail'];
-	$userName = $_POST['userName'];
-	$statusYN = $_POST['statusYN'];
-	$this->db->where('email', $userEmail);
+     $sql="SELECT * FROM login_auth where user_name='$id'";
+    
+     return $this->db->query($sql, $return_object = TRUE)->result_array();
+    }
+    
+    function adminEdit($id){
+	$folderPath = $config['upload_path'] = 'upload/';
+	$config['allowed_types'] = 'gif|jpg|png|pdf';
+	       
+	$this->load->library('upload', $config);
+	$this->upload->do_upload('user_image');
+	$data = $this->upload->data();
+	$filePath=$folderPath.$data['file_name'];
+	 if($_FILES['user_image']['name']=="")
+	    {
+		$filePath=$this->input->post('oldimage');
+	    }
 	$data = array(
-	    'status' => $statusYN
+	'user_name'=>$this->input->post('username'),
+	'password'=>$this->input->post('password'),
+	'email'=>$this->input->post('email'),
+	'user_image'=>$filePath,
 	);
-	$this->db->update('login_auth', $data);
-	$this->db->affected_rows();
-	if($statusYN=="Y"){
-	    $this->userEmailSending($userEmail,$userName,$statusYN);
-	}else{
-	    $this->userRejectEmailSending($userEmail,$userName,$statusYN);
-	}
-	
-    }
-    function userEmailSending($userEmail,$userName,$statusYN)
-    {
-	$body ="<html>
-		    <head>
-			<title>Welcome to Talent Capital</title>
-		    </head>
-		    <body>
-			<h4>Dear $userName,</h4>
-			<p>You have been Activated.</p>
-			<p> <a href='".base_url()."vendorlogin/index/hiringPartner' >Click Here</a> </p>
-			<br>
-			<p>Regards,</p>
-			<p>Talent capital Portal,</p>
-			<p>To contact the Talent Capital India Team, click the link below:</p>
-			<p>https://www.talentcapitalindia.com/support</p>
-			<img src='http://appimagine.com/talentcapital/assets/images/logo.png' style='width:100px'>
-		    </body>
-		</html>";
-	$this->email->set_newline("\r\n");
-	$this->email->from('donotreply@talentcapitalindia.com'); // change it to yours
-	$this->email->to($userEmail);// change it to yours
-	$this->email->subject('Talent Capital India - activation Mail');
-	$this->email->message($body);
-	
-	if($this->email->send()){
-	    if($statusYN=="Y"){
-		$this->session->set_flashdata('status', 'User has been approved successfully');
-	    }
-	}else{
-	    $this->session->set_flashdata('status', 'User has not approved');	
-	}
+	  
+       $this->db->where("user_name",$id);
+	$this->db->update("login_auth",$data);
+	//print_r($sql);exit;
+     
     }
     
-    function userRejectEmailSending($userEmail,$userName,$statusYN)
-    {
-	$body ="<html>
-		    <head>
-			<title>Welcome to Talent Capital</title>
-		    </head>
-		    <body>
-			<h4>Dear $userName,</h4>
-			<p>You have been Rejected.</p>
-			<br>
-			<p>Regards,</p>
-			<p>Talent capital Portal,</p>
-			<p>To contact the Talent Capital India Team, click the link below:</p>
-			<p>https://www.talentcapitalindia.com/support</p>
-			<img src='http://appimagine.com/talentcapital/assets/images/logo.png' style='width:100px'>
-		    </body>
-		</html>";
-	$this->email->set_newline("\r\n");
-	$this->email->from('donotreply@talentcapitalindia.com'); // change it to yours
-	$this->email->to($userEmail);// change it to yours
-	$this->email->subject('Talent Capital India - activation Mail');
-	$this->email->message($body);
-	
-	if($this->email->send()){
-	    if($statusYN=="N"){
-		$this->session->set_flashdata('status', 'User has been Rejected successfully');
-	    }
-	}else{
-	    $this->session->set_flashdata('status', 'User has not approved');	
-	}
-    }
+    
+    
+    
+    
+    
     
     //USER VIEW ENDS
     
@@ -304,90 +261,7 @@ class talentModel extends CI_Model {
             $data = $this->upload->data();
             $profilePic=$folderPath.$data['file_name'];
             
-	    $primary=$this->input->post('primary_other_skils');
-	    $secondary=$this->input->post('secondary_other_skils');
-	    //echo $test;exit;
-
-	    if($primary==null)
-	    {
-		$primary="NULL";
-	    }
-	    else {
-		$primary=$this->input->post('primary_other_skils');
-	    }
-	    
-	    if($secondary==null)
-	    {
-	       $secondary='NULL';
-	    }
-	    else {
-		$secondary=$this->input->post('secondary_other_skils');
-	    }
-	    if($this->input->post('SecondarySkills')=="")
-		    {
-                        $data= array(
-                           'candidate_name'=>$this->input->post('candidate_name'),
-                           'mobile_number'=>$this->input->post('mobile_number'),
-                           'mail_id'=>$this->input->post('mail_id'),
-                           'skills'=>implode(",",$this->input->post('skills')),
-                           'primary_other_skils'=>$primary,
-                           'total_exp_year'=>$this->input->post('total_exp_year'),
-                           'total_exp_month'=>$this->input->post('total_exp_month'),
-                           'relevant_exp'=>$this->input->post('relevant_exp'),
-                           'notice_period'=>$this->input->post('notice_period'),
-                           'current_ctc'=>$this->input->post('current_ctc'),
-                           'expected_ctc'=>$this->input->post('expected_ctc'),
-                           'day'=>$this->input->post('day'),
-                           'month'=>$this->input->post('month'),
-                           'year'=>$this->input->post('year'),
-                           'pan_card_no'=>$this->input->post('pan_card_no'),
-                           'pan_card_attach'=>$filePath,
-                           'language_known'=>implode(",",$this->input->post('language_known')),
-                           'current_location'=>$this->input->post('current_location'),
-                           'preferred_location'=>$this->input->post('preferred_location'),
-                           'interview_timing'=>$this->input->post('interview_timing'),
-                           'educational_gap_year'=>$this->input->post('educational_gap_year'),
-                           'career_gap_year'=>$this->input->post('career_gap_year'),
-                           'team_size_name'=>$this->input->post('team_size_name'),
-                           'team_contact_no'=>$this->input->post('team_contact_no'),
-                           'profile_pic'=>$profilePic
-                        );
-                                   
-                    }
-                    else
-                        {
-                            $data= array(
-                                'candidate_name'=>$this->input->post('candidate_name'),
-                                'mobile_number'=>$this->input->post('mobile_number'),
-                                'mail_id'=>$this->input->post('mail_id'),
-                                'skills'=>implode(",",$this->input->post('skills')),
-                                'primary_other_skils'=>$primary,
-                                'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-                                'secondary_other_skils'=>$secondary,
-                                'total_exp_year'=>$this->input->post('total_exp_year'),
-                                'total_exp_month'=>$this->input->post('total_exp_month'),
-                                'relevant_exp'=>$this->input->post('relevant_exp'),
-                                'notice_period'=>$this->input->post('notice_period'),
-                                'current_ctc'=>$this->input->post('current_ctc'),
-                                'expected_ctc'=>$this->input->post('expected_ctc'),
-                                'day'=>$this->input->post('day'),
-                                'month'=>$this->input->post('month'),
-                                'year'=>$this->input->post('year'),
-                                'pan_card_no'=>$this->input->post('pan_card_no'),
-                                'pan_card_attach'=>$filePath,
-                                'language_known'=>implode(",",$this->input->post('language_known')),
-                                'current_location'=>$this->input->post('current_location'),
-                                'preferred_location'=>$this->input->post('preferred_location'),
-                                'interview_timing'=>$this->input->post('interview_timing'),
-                                'educational_gap_year'=>$this->input->post('educational_gap_year'),
-                                'career_gap_year'=>$this->input->post('career_gap_year'),
-                                'team_size_name'=>$this->input->post('team_size_name'),
-                                'team_contact_no'=>$this->input->post('team_contact_no'),
-                                'profile_pic'=>$profilePic
-                             );
-                        }
-	    
-//            $data= array(
+            $data= array(
 //                'candidate_name'=>$this->input->post('candidate_name'),
 //                'mobile_number'=>$this->input->post('mobile_number'),
 //                'mail_id'=>$this->input->post('mail_id'),
@@ -412,7 +286,41 @@ class talentModel extends CI_Model {
 //                'team_size_name'=>$this->input->post('team_size_name'),
 //                'team_contact_no'=>$this->input->post('team_contact_no'),
 //		'profile_pic'=>$profilePic
-//            );
+                'candidate_name'=>$this->input->post('candidate_name'),
+		'middle_name'=>$this->input->post('middle_name'),
+		'last_name'=>$this->input->post('last_name'),
+                'mobile_number'=>$this->input->post('mobile_number'),
+		'password'=>$this->input->post('confirm_password'),
+                'mail_id'=>$this->input->post('mail_id'),
+                'skills'=>implode(",",$this->input->post('skills')),
+                'total_exp_year'=>$this->input->post('total_exp_year'),
+		'total_exp_month'=>$this->input->post('total_exp_month'),
+		'profile_pic'=>$profilePic,
+		'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		'notice_period'=>$this->input->post('notice_period'),
+		'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+                'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		
+                'day'=>$this->input->post('day'),
+                'month'=>$this->input->post('month'),
+                'year'=>$this->input->post('year'),
+                'pan_card_no'=>$this->input->post('pan_card_no'),
+                'pan_card_attach'=>$filePath,
+                'language_known'=>implode(",",$this->input->post('language_known')),
+                'current_location'=>$this->input->post('current_location'),
+                'preferred_location'=>$this->input->post('preferred_location'),
+                'interview_timing'=>$this->input->post('interview_timing'),
+                'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		'educational_gap_month'=>$this->input->post('educational_gap_month'),
+                'career_gap_year'=>$this->input->post('career_gap_year'),
+		'career_gap_month'=>$this->input->post('career_gap_month'),
+                'team_size_name'=>$this->input->post('team_size_name'),
+                'team_contact_no'=>$this->input->post('team_contact_no'),
+
+            );
             $select = $this->db->insert('emp_candidate_details',$data);
             $getHeadId=$this->db->insert_id($select);
             

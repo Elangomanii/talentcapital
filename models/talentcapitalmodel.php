@@ -255,7 +255,7 @@
 
 	    $this->db->insert('vendor',$data);
 	    $this->emailToVendor($Uname,$ramdomString);
-	    $vendorTci = substr($vendorCode,4);
+	    $vendorTci = substr($vendorCode,3);
 	    $newCode = $vendorTci + 1;
 	    $this->tciUpdate($vendorTci,$newCode);
         }
@@ -512,183 +512,73 @@
 			$secondary=$this->input->post('secondary_other_skils');
 			//echo $test;exit;
             
-			if($primary==null)
-			{
-			    $primary="NULL";
-			}
-			else {
-			    $primary=$this->input->post('primary_other_skils');
-			}
-			
-			if($secondary==null)
-			{
-			   $secondary='NULL';
-			}
-			else {
-			    $secondary=$this->input->post('secondary_other_skils');
-			}
-			
-			if($this->input->post('vendor_code')=="")
-			{
-				if($this->input->post('SecondarySkills')=="")
-				{
-					echo "sec";
-					$data= array(
-						// 'vendor_code'=>$this->input->post('vendor_code'),
-						'candidate_name'=>$this->input->post('candidate_name'),
-						'mobile_number'=>$this->input->post('mobile_number'),
-						//'mail_id'=>$this->input->post('mail_id'),
-						'skills'=>implode(",",$this->input->post('skills')),
-						'primary_other_skils'=>$primary,
-						
-						// 'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-						// 'secondary_other_skils'=>$this->input->post('secondary_other_skils'),
-						
-						'total_exp_year'=>$this->input->post('total_exp_year'),
-						'total_exp_month'=>$this->input->post('total_exp_month'),
-						'relevant_exp'=>$this->input->post('relevant_exp'),
-						'notice_period'=>$this->input->post('notice_period'),
-						'current_ctc'=>$this->input->post('current_ctc'),
-						'expected_ctc'=>$this->input->post('expected_ctc'),
-						'day'=>$this->input->post('day'),
-						'month'=>$this->input->post('month'),
-						'year'=>$this->input->post('year'),
-						'pan_card_no'=>$this->input->post('pan_card_no'),
-						'pan_card_attach'=>$filePath,
-						'language_known'=>implode(",",$this->input->post('language_known')),
-						'current_location'=>$this->input->post('current_location'),
-						'preferred_location'=>$this->input->post('preferred_location'),
-						'interview_timing'=>$this->input->post('interview_timing'),
-						'educational_gap_year'=>$this->input->post('educational_gap_year'),
-						'career_gap_year'=>$this->input->post('career_gap_year'),
-						'team_size_name'=>$this->input->post('team_size_name'),
-						'team_contact_no'=>$this->input->post('team_contact_no'),
-						'profile_pic'=>$profilePic
-					);
-					
-				}
-				else
-				{
-					echo "sec in";
-					$data= array(
-						// 'vendor_code'=>$this->input->post('vendor_code'),
-						'candidate_name'=>$this->input->post('candidate_name'),
-						'mobile_number'=>$this->input->post('mobile_number'),
-						//'mail_id'=>$this->input->post('mail_id'),
-						'skills'=>implode(",",$this->input->post('skills')),
-						'primary_other_skils'=>$primary,
-						
-						'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-						'secondary_other_skils'=>$secondary,
-						
-						'total_exp_year'=>$this->input->post('total_exp_year'),
-						'total_exp_month'=>$this->input->post('total_exp_month'),
-						'relevant_exp'=>$this->input->post('relevant_exp'),
-						'notice_period'=>$this->input->post('notice_period'),
-						'current_ctc'=>$this->input->post('current_ctc'),
-						'expected_ctc'=>$this->input->post('expected_ctc'),
-						'day'=>$this->input->post('day'),
-						'month'=>$this->input->post('month'),
-						'year'=>$this->input->post('year'),
-						'pan_card_no'=>$this->input->post('pan_card_no'),
-						'pan_card_attach'=>$filePath,
-						'language_known'=>implode(",",$this->input->post('language_known')),
-						'current_location'=>$this->input->post('current_location'),
-						'preferred_location'=>$this->input->post('preferred_location'),
-						'interview_timing'=>$this->input->post('interview_timing'),
-						'educational_gap_year'=>$this->input->post('educational_gap_year'),
-						'career_gap_year'=>$this->input->post('career_gap_year'),
-						'team_size_name'=>$this->input->post('team_size_name'),
-						'team_contact_no'=>$this->input->post('team_contact_no'),
-						'profile_pic'=>$profilePic
-					);
-				}
-			}
-			else{
-				
-				if($this->input->post('SecondarySkills')=="")
-				{
-					echo "sec ";
-					$data= array(
-						// 'vendor_code'=>$this->input->post('vendor_code'),
-						'candidate_name'=>$this->input->post('candidate_name'),
-						'mobile_number'=>$this->input->post('mobile_number'),
-						//'mail_id'=>$this->input->post('mail_id'),
-						'skills'=>implode(",",$this->input->post('skills')),
-						'primary_other_skils'=>$primary,
-						
-						// 'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-						// 'secondary_other_skils'=>$this->input->post('secondary_other_skils'),
-						
-						'total_exp_year'=>$this->input->post('total_exp_year'),
-						'total_exp_month'=>$this->input->post('total_exp_month'),
-						'relevant_exp'=>$this->input->post('relevant_exp'),
-						'notice_period'=>$this->input->post('notice_period'),
-						'current_ctc'=>$this->input->post('current_ctc'),
-						'expected_ctc'=>$this->input->post('expected_ctc'),
-						'day'=>$this->input->post('day'),
-						'month'=>$this->input->post('month'),
-						'year'=>$this->input->post('year'),
-						'pan_card_no'=>$this->input->post('pan_card_no'),
-						'pan_card_attach'=>$filePath,
-						'language_known'=>implode(",",$this->input->post('language_known')),
-						'current_location'=>$this->input->post('current_location'),
-						'preferred_location'=>$this->input->post('preferred_location'),
-						'interview_timing'=>$this->input->post('interview_timing'),
-						'educational_gap_year'=>$this->input->post('educational_gap_year'),
-						'career_gap_year'=>$this->input->post('career_gap_year'),
-						'team_size_name'=>$this->input->post('team_size_name'),
-						'team_contact_no'=>$this->input->post('team_contact_no'),
-						'profile_pic'=>$profilePic
-					);
-					
-				}
-				else
-				{
-					echo "sec in";
-					$data= array(
-						// 'vendor_code'=>$this->input->post('vendor_code'),
-						'candidate_name'=>$this->input->post('candidate_name'),
-						'mobile_number'=>$this->input->post('mobile_number'),
-						//'mail_id'=>$this->input->post('mail_id'),
-						'skills'=>implode(",",$this->input->post('skills')),
-						'primary_other_skils'=>$primary,
-						
-						'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-						'secondary_other_skils'=>$secondary,
-						
-						'total_exp_year'=>$this->input->post('total_exp_year'),
-						'total_exp_month'=>$this->input->post('total_exp_month'),
-						'relevant_exp'=>$this->input->post('relevant_exp'),
-						'notice_period'=>$this->input->post('notice_period'),
-						'current_ctc'=>$this->input->post('current_ctc'),
-						'expected_ctc'=>$this->input->post('expected_ctc'),
-						'day'=>$this->input->post('day'),
-						'month'=>$this->input->post('month'),
-						'year'=>$this->input->post('year'),
-						'pan_card_no'=>$this->input->post('pan_card_no'),
-						'pan_card_attach'=>$filePath,
-						'language_known'=>implode(",",$this->input->post('language_known')),
-						'current_location'=>$this->input->post('current_location'),
-						'preferred_location'=>$this->input->post('preferred_location'),
-						'interview_timing'=>$this->input->post('interview_timing'),
-						'educational_gap_year'=>$this->input->post('educational_gap_year'),
-						'career_gap_year'=>$this->input->post('career_gap_year'),
-						'team_size_name'=>$this->input->post('team_size_name'),
-						'team_contact_no'=>$this->input->post('team_contact_no'),
-						'profile_pic'=>$profilePic
-					);
-				}
-			}
-				//echo "<pre>";
-				//print_r($data);exit;
-            
-			
+            $data= array(
+		'vendor_code'=>$this->input->post('vendor_code'),
+                'candidate_name'=>$this->input->post('candidate_name'),
+		'middle_name'=>$this->input->post('middle_name'),
+		'last_name'=>$this->input->post('last_name'),
+                'mobile_number'=>$this->input->post('mobile_number'),
+                
+                //'mail_id'=>$this->input->post('mail_id'),
+                'skills'=>implode(",",$this->input->post('skills')),
+                'total_exp_year'=>$this->input->post('total_exp_year'),
+		'total_exp_month'=>$this->input->post('total_exp_month'),
+                'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+                'notice_period'=>$this->input->post('notice_period'),
+                
+		
+		
+		'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+                'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		
+		
+                'day'=>$this->input->post('day'),
+                'month'=>$this->input->post('month'),
+                'year'=>$this->input->post('year'),
+                'pan_card_no'=>$this->input->post('pan_card_no'),
+                'pan_card_attach'=>$filePath,
+                'language_known'=>implode(",",$this->input->post('language_known')),
+                'current_location'=>$this->input->post('current_location'),
+                'preferred_location'=>$this->input->post('preferred_location'),
+                'interview_timing'=>$this->input->post('interview_timing'),
+		
+		
+               'educational_gap_year'=>$this->input->post('educational_gap_year'),
+	       'educational_gap_month'=>$this->input->post('educational_gap_month'),
+		'career_gap_year'=>$this->input->post('career_gap_year'),
+		'career_gap_month'=>$this->input->post('career_gap_month'),
+                'team_size_name'=>$this->input->post('team_size_name'),
+                'team_contact_no'=>$this->input->post('team_contact_no'),
+		'profile_pic'=>$profilePic
+            );
             $select = $this->db->update('emp_candidate_details',$data);
 
             $clientCnt = count($this->input->post('client_comp'));
+	    $files=$_FILES;
             for($i=0; $i<$clientCnt; $i++)
             {
+		
+		$_FILES['file_employee_upload']['name']= $files['file_employee_upload']['name'][$j];
+		$_FILES['file_employee_upload']['type']= $files['file_employee_upload']['type'][$j];
+		$_FILES['file_employee_upload']['tmp_name'] = $files['file_employee_upload']['tmp_name'][$j];
+		$_FILES['file_employee_upload']['error']= $files['file_employee_upload']['error'][$j];
+		$_FILES['file_employee_upload']['size']= $files['file_employee_upload']['size'][$j];
+		$config['upload_path'] = 'upload/';
+		$config['allowed_types'] = 'gif|jpg|png|html|doc|txt|docx|pdf';
+		   	    
+		    $this->load->library('upload', $config);
+		    $this->upload->initialize($config);
+		    $this->upload->do_upload('file_employee_upload');
+		    $file_data=$this->upload->data();
+		    $file_name=$file_data['file_name'];
+		    $file_size=$file_data['file_size'];
+		    $file_size=$file_size/1024;//for KB
+		    $target_file =base_url().$config['upload_path'] . $file_name;
+		    
+		    
 		$data= array(
 		    'head_id'=>$this->input->post('hiddenId'),
 		    'client_comp'=>$_POST['client_comp'][$i],
@@ -698,14 +588,32 @@
 		    'emp_duration_to'=>$_POST['emp_duration_to'][$i],
 		    'location'=>$_POST['location'][$i],
 		    'reason_desc'=>$_POST['empReasonDesc'][$i],
+		    'file_student_upload'=>$file_name[$i],
 		);
 		
 		$this->db->insert('employement_details',$data);                    
             }
          
             $degreeCnt = count($this->input->post('degree'));
+	    $files=$_FILES;
             for($j=0; $j<$degreeCnt; $j++)
             {
+		$_FILES['file_student_upload']['name']= $files['file_student_upload']['name'][$j];
+		$_FILES['file_student_upload']['type']= $files['file_student_upload']['type'][$j];
+		$_FILES['file_student_upload']['tmp_name'] = $files['file_student_upload']['tmp_name'][$j];
+		$_FILES['file_student_upload']['error']= $files['file_student_upload']['error'][$j];
+		$_FILES['file_student_upload']['size']= $files['file_student_upload']['size'][$j];
+		$config['upload_path'] = 'upload/';
+		$config['allowed_types'] = 'gif|jpg|png|html|doc|txt|docx|pdf';
+		   	    
+		    $this->load->library('upload', $config);
+		    $this->upload->initialize($config);
+		    $this->upload->do_upload('file_student_upload');
+		    $file_data=$this->upload->data();
+		    $file_name=$file_data['file_name'];
+		    $file_size=$file_data['file_size'];
+		    $file_size=$file_size/1024;//for KB
+		    $target_file =base_url().$config['upload_path'] . $file_name;
 		$data= array(
 		    'head_id'=>$this->input->post('hiddenId'),
 		    'degree'=>$_POST['degree'][$j],
@@ -715,6 +623,7 @@
 		    'university'=>$_POST['university'][$j],
 		    'percentage'=>$_POST['percentage'][$j],
 		    'reason_desc'=>$_POST['reasonDesc'][$j]
+		     'file_student_upload'=>$file_name[$j]
 		);
 		$this->db->insert('educational_details',$data);                                            
             }
@@ -722,6 +631,12 @@
 	
 	function hiringPartnerLinkAdd($code)
         {
+	    
+	    //echo "<pre>";
+	    //print_r($_POST);
+	    //echo "</pre>";
+	    //exit;
+	    
 	    $ramdomString = random_string('alnum', 13);
             $folderPath = $config['upload_path'] = 'upload/';
             $config['allowed_types'] = 'gif|jpg|png';     
@@ -737,184 +652,79 @@
             $data = $this->upload->data();
             $profilePic=$folderPath.$data['file_name'];
             
-            $primary=$this->input->post('primary_other_skils');
-	    $secondary=$this->input->post('secondary_other_skils');
-	    //echo $test;exit;
-
-	    if($primary==null)
-	    {
-		$primary="NULL";
-	    }
-	    else {
-		$primary=$this->input->post('primary_other_skils');
-	    }
-	    
-	    if($secondary==null)
-	    {
-	       $secondary='NULL';
-	    }
-	    else {
-		$secondary=$this->input->post('secondary_other_skils');
-	    }
-	    
-	    if($this->input->post('vendor_code')=="")
-	    {
-		    if($this->input->post('SecondarySkills')=="")
-		    {
-			    echo "sec";
-			     $data= array(
-				'vendor_code'=>$code,
-				'candidate_name'=>$this->input->post('candidate_name'),
-				'mobile_number'=>$this->input->post('mobile_number'),
-				'password'=>$this->input->post('confirm_password'),
-				'mail_id'=>$this->input->post('mail_id'),
-				'skills'=>implode(",",$this->input->post('skills')),
-				'primary_other_skils'=>$primary,
-				//'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-				//'secondary_other_skils'=>$secondary,
-				'total_exp_year'=>$this->input->post('total_exp_year'),
-				'total_exp_month'=>$this->input->post('total_exp_month'),
-				'relevant_exp'=>$this->input->post('relevant_exp'),
-				'notice_period'=>$this->input->post('notice_period'),
-				'current_ctc'=>$this->input->post('current_ctc'),
-				'expected_ctc'=>$this->input->post('expected_ctc'),
-				'day'=>$this->input->post('day'),
-				'month'=>$this->input->post('month'),
-				'year'=>$this->input->post('year'),
-				'pan_card_no'=>$this->input->post('pan_card_no'),
-				'pan_card_attach'=>$filePath,
-				'language_known'=>implode(",",$this->input->post('language_known')),
-				'current_location'=>$this->input->post('current_location'),
-				'preferred_location'=>$this->input->post('preferred_location'),
-				'interview_timing'=>$this->input->post('interview_timing'),
-				'educational_gap_year'=>$this->input->post('educational_gap_year'),
-				'career_gap_year'=>$this->input->post('career_gap_year'),
-				'team_size_name'=>$this->input->post('team_size_name'),
-				'team_contact_no'=>$this->input->post('team_contact_no'),
-				'email_random_code'=>$ramdomString,
-				'login_types'=>'internalEmp',
-			    );
-			    
-		    }
-		    else
-		    {
-			    echo "sec in";
-			    $data= array(
-				'vendor_code'=>$code,
-				'candidate_name'=>$this->input->post('candidate_name'),
-				'mobile_number'=>$this->input->post('mobile_number'),
-				'password'=>$this->input->post('confirm_password'),
-				'mail_id'=>$this->input->post('mail_id'),
-				'skills'=>implode(",",$this->input->post('skills')),
-				'primary_other_skils'=>$primary,
-				'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-				'secondary_other_skils'=>$secondary,
-				'total_exp_year'=>$this->input->post('total_exp_year'),
-				'total_exp_month'=>$this->input->post('total_exp_month'),
-				'relevant_exp'=>$this->input->post('relevant_exp'),
-				'notice_period'=>$this->input->post('notice_period'),
-				'current_ctc'=>$this->input->post('current_ctc'),
-				'expected_ctc'=>$this->input->post('expected_ctc'),
-				'day'=>$this->input->post('day'),
-				'month'=>$this->input->post('month'),
-				'year'=>$this->input->post('year'),
-				'pan_card_no'=>$this->input->post('pan_card_no'),
-				'pan_card_attach'=>$filePath,
-				'language_known'=>implode(",",$this->input->post('language_known')),
-				'current_location'=>$this->input->post('current_location'),
-				'preferred_location'=>$this->input->post('preferred_location'),
-				'interview_timing'=>$this->input->post('interview_timing'),
-				'educational_gap_year'=>$this->input->post('educational_gap_year'),
-				'career_gap_year'=>$this->input->post('career_gap_year'),
-				'team_size_name'=>$this->input->post('team_size_name'),
-				'team_contact_no'=>$this->input->post('team_contact_no'),
-				'email_random_code'=>$ramdomString,
-				'login_types'=>'internalEmp',
-			    );
-		    }
-	    }
-	    else{
-		    
-		    if($this->input->post('SecondarySkills')=="")
-		    {
-			    echo "sec ";
-			    $data= array(
-				'vendor_code'=>$code,
-				'candidate_name'=>$this->input->post('candidate_name'),
-				'mobile_number'=>$this->input->post('mobile_number'),
-				'password'=>$this->input->post('confirm_password'),
-				'mail_id'=>$this->input->post('mail_id'),
-				'skills'=>implode(",",$this->input->post('skills')),
-				'primary_other_skils'=>$primary,
-				'total_exp_year'=>$this->input->post('total_exp_year'),
-				'total_exp_month'=>$this->input->post('total_exp_month'),
-				'relevant_exp'=>$this->input->post('relevant_exp'),
-				'notice_period'=>$this->input->post('notice_period'),
-				'current_ctc'=>$this->input->post('current_ctc'),
-				'expected_ctc'=>$this->input->post('expected_ctc'),
-				'day'=>$this->input->post('day'),
-				'month'=>$this->input->post('month'),
-				'year'=>$this->input->post('year'),
-				'pan_card_no'=>$this->input->post('pan_card_no'),
-				'pan_card_attach'=>$filePath,
-				'language_known'=>implode(",",$this->input->post('language_known')),
-				'current_location'=>$this->input->post('current_location'),
-				'preferred_location'=>$this->input->post('preferred_location'),
-				'interview_timing'=>$this->input->post('interview_timing'),
-				'educational_gap_year'=>$this->input->post('educational_gap_year'),
-				'career_gap_year'=>$this->input->post('career_gap_year'),
-				'team_size_name'=>$this->input->post('team_size_name'),
-				'team_contact_no'=>$this->input->post('team_contact_no'),
-				'email_random_code'=>$ramdomString,
-				'login_types'=>'internalEmp',
-			    );
-			    
-		    }
-		    else
-		    {
-			    echo "sec in";
-			    $data= array(
-				'vendor_code'=>$code,
-				'candidate_name'=>$this->input->post('candidate_name'),
-				'mobile_number'=>$this->input->post('mobile_number'),
-				'password'=>$this->input->post('confirm_password'),
-				'mail_id'=>$this->input->post('mail_id'),
-				'skills'=>implode(",",$this->input->post('skills')),
-				'primary_other_skils'=>$primary,
-				'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
-				'secondary_other_skils'=>$secondary,
-				'total_exp_year'=>$this->input->post('total_exp_year'),
-				'total_exp_month'=>$this->input->post('total_exp_month'),
-				'relevant_exp'=>$this->input->post('relevant_exp'),
-				'notice_period'=>$this->input->post('notice_period'),
-				'current_ctc'=>$this->input->post('current_ctc'),
-				'expected_ctc'=>$this->input->post('expected_ctc'),
-				'day'=>$this->input->post('day'),
-				'month'=>$this->input->post('month'),
-				'year'=>$this->input->post('year'),
-				'pan_card_no'=>$this->input->post('pan_card_no'),
-				'pan_card_attach'=>$filePath,
-				'language_known'=>implode(",",$this->input->post('language_known')),
-				'current_location'=>$this->input->post('current_location'),
-				'preferred_location'=>$this->input->post('preferred_location'),
-				'interview_timing'=>$this->input->post('interview_timing'),
-				'educational_gap_year'=>$this->input->post('educational_gap_year'),
-				'career_gap_year'=>$this->input->post('career_gap_year'),
-				'team_size_name'=>$this->input->post('team_size_name'),
-				'team_contact_no'=>$this->input->post('team_contact_no'),
-				'email_random_code'=>$ramdomString,
-				'login_types'=>'internalEmp',
-			    );
-		    }
-	    }
+            $data= array(
+		'vendor_code'=>$code,
+                'candidate_name'=>$this->input->post('candidate_name'),
+		'middle_name'=>$this->input->post('middle_name'),
+		'last_name'=>$this->input->post('last_name'),
+                'mobile_number'=>$this->input->post('mobile_number'),
+		'password'=>$this->input->post('confirm_password'),
+                'mail_id'=>$this->input->post('mail_id'),
+                'skills'=>implode(",",$this->input->post('skills')),
+                'total_exp_year'=>$this->input->post('total_exp_year'),
+		'total_exp_month'=>$this->input->post('total_exp_month'),
+		'profile_pic'=>$profilePic,
+		'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		'notice_period'=>$this->input->post('notice_period'),
+		'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+                'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		
+                'day'=>$this->input->post('day'),
+                'month'=>$this->input->post('month'),
+                'year'=>$this->input->post('year'),
+                'pan_card_no'=>$this->input->post('pan_card_no'),
+                'pan_card_attach'=>$filePath,
+                'language_known'=>implode(",",$this->input->post('language_known')),
+                'current_location'=>$this->input->post('current_location'),
+                'preferred_location'=>$this->input->post('preferred_location'),
+                'interview_timing'=>$this->input->post('interview_timing'),
+                'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		'educational_gap_month'=>$this->input->post('educational_gap_month'),
+                'career_gap_year'=>$this->input->post('career_gap_year'),
+		'career_gap_month'=>$this->input->post('career_gap_month'),
+                'team_size_name'=>$this->input->post('team_size_name'),
+                'team_contact_no'=>$this->input->post('team_contact_no'),
+		'email_random_code'=>$ramdomString,
+		'login_types'=>'internalEmp',
+            );
 	    //echo "<pre>";
-	    //print_r($data);exit;
+	    //print_r($data);
+	    //echo "</pre>";
+	    //exit;
             $select = $this->db->insert('emp_candidate_details',$data);
             $getHeadId=$this->db->insert_id($select);
             
-            $clientCnt = count($this->input->post('client_comp'));
+         $clientCnt = count($this->input->post('client_comp'));
+	  //echo "<pre>";
+	  //print_r($_FILES);
+	  //echo "</pre>";
+	  //exit;
+	   $files=$_FILES;
             for($i=0; $i<$clientCnt; $i++)
             {
+		   
+	            $_FILES['file_employee_upload']['name']= $files['file_employee_upload']['name'][$i];
+		    $_FILES['file_employee_upload']['type']= $files['file_employee_upload']['type'][$i];
+		    $_FILES['file_employee_upload']['tmp_name']= $files['file_employee_upload']['tmp_name'][$i];
+		    $_FILES['file_employee_upload']['error']= $files['file_employee_upload']['error'][$i];
+		    $_FILES['file_employee_upload']['size']= $files['file_employee_upload']['size'][$i];
+		    $config['upload_path'] = 'upload/';
+		    $config['allowed_types'] = 'gif|jpg|png|html|doc|txt|docx|pdf';
+		   
+			    
+		    $this->load->library('upload', $config);
+		    $this->upload->initialize($config);
+		    $this->upload->do_upload('file_employee_upload');
+		    $file_data=$this->upload->data();
+		    $file_name=$file_data['file_name'];
+		    $file_size=$file_data['file_size'];
+		    $file_size=$file_size/1024;//for KB
+		    $target_file =base_url().$config['upload_path'] . $file_name;
+	    
+	    
 		$data= array(
 		    'head_id'=>$getHeadId,
 		    'client_comp'=>$_POST['client_comp'][$i],
@@ -924,13 +734,37 @@
 		    'emp_duration_to'=>$_POST['emp_duration_to'][$i],
 		    'location'=>$_POST['location'][$i],
 		    'reason_desc'=>$_POST['empReasonDesc'][$i],
+		    'file_employee_upload'=>$file_name[$i],
 		);
+	//	 echo "<pre>";
+	//    print_r($data);
+	//    echo "</pre>";
 		$this->db->insert('employement_details',$data);                    
             }
             
             $degreeCnt = count($this->input->post('degree'));
+	     //$files=$_FILES;
             for($j=0; $j<$degreeCnt; $j++)
             {
+		   
+	            $_FILES['file_student_upload']['name']= $files['file_student_upload']['name'][$j];
+		    $_FILES['file_student_upload']['type']= $files['file_student_upload']['type'][$j];
+		    $_FILES['file_student_upload']['tmp_name'] = $files['file_student_upload']['tmp_name'][$j];
+		    $_FILES['file_student_upload']['error']= $files['file_student_upload']['error'][$j];
+		    $_FILES['file_student_upload']['size']= $files['file_student_upload']['size'][$j];
+		    $config['upload_path'] = 'upload/';
+		    $config['allowed_types'] = 'gif|jpg|png|html|doc|txt|docx|pdf';
+		   
+		    
+		    $this->load->library('upload', $config);
+		    $this->upload->initialize($config);
+		    $this->upload->do_upload('file_student_upload');
+		    $file_data=$this->upload->data();
+		    
+		    $file_name=$file_data['file_name'];
+		    //$file_size=$file_data['file_size'];
+		    //$file_size=$file_size/1024;//for KB
+		    $target_file =base_url().$config['upload_path'] . $file_name;
 		$data= array(
 		    'head_id'=>$getHeadId,
 		    'degree'=>$_POST['degree'][$j],
@@ -939,10 +773,15 @@
 		    'edu_duration_to'=>$_POST['edu_duration_to'][$j],
 		    'university'=>$_POST['university'][$j],
 		    'percentage'=>$_POST['percentage'][$j],
-		    'reason_desc'=>$_POST['reasonDesc'][$j]
+		    'reason_desc'=>$_POST['reasonDesc'][$j],
+		    'file_student_upload'=>$file_name
 		);
+	//	 echo "<pre>";
+	//    print_r($data);
+	//    echo "</pre>";
 		$this->db->insert('educational_details',$data);                                            
             }
+	    
             
 	    $this->emailToApplicantAndVendor($code);
 	    
@@ -1017,6 +856,11 @@
             }
 	    
 	    
-        }	
+        }
+	
+	function getVendorName($code){
+	    $sql="SELECT name FROM vendor where vendor_code='$code'";
+	    return $this->db->query($sql, $return_object = TRUE)->result_array();
+	}
     }
 ?>

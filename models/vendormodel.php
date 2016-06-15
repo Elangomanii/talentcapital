@@ -68,6 +68,36 @@ class vendormodel extends CI_Model {
 	
 	$this->mailToCandidate($email,$vendorCode,$session_username);
     }
+    //vendor edit
+     function getvendorDetailEdit($id){
+    
+	$sql="SELECT vendor_code,name,mobile_number,email,profile_pic FROM vendor where vendor_code='$id'";
+       
+	return $this->db->query($sql, $return_object = TRUE)->result_array();
+    }
+    
+    function adminVendorEdit($id){
+	$folderPath = $config['upload_path'] = 'upload/';
+	$config['allowed_types'] = 'gif|jpg|png|pdf';
+	$this->load->library('upload', $config);
+	$this->upload->do_upload('profile_pic');
+	$data = $this->upload->data();
+	$filePath=$folderPath.$data['file_name'];
+	if($_FILES['profile_pic']['name']=="")
+	    {
+		$filePath=$this->input->post('oldimage');
+	    }
+	$data = array(
+	    'name'=>$this->input->post('name'),
+	    'mobile_number'=>$this->input->post('mobile_number'),
+	    'email'=>$this->input->post('email'),
+	    'profile_pic'=>$filePath,
+	);
+	
+        $this->db->where("vendor_code",$id);
+	$this->db->update("vendor",$data);
+
+    }
     
     
     function mailToCandidate($email,$vendorCode,$session_username)

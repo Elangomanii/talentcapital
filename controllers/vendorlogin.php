@@ -101,6 +101,26 @@ class vendorlogin extends CI_Controller {
 	$this->load->view('vendor/header');
 	$this->load->view('vendor/vendorEdit',$data);
     }
+    //vendor edit
+    
+    
+ function adminVendorEdit($id){
+	$session_data=$this->session->userdata('vendor_code');
+	if(!empty($session_data)){
+	    if(isset($_POST['Update'])){
+		
+		$this->vendormodel->adminVendorEdit($id);
+		$this->session->set_flashdata('status','Profile details updated successfully');
+		redirect("vendorlogin/vendor");
+	    }
+	    $data['vendorEdit']=$this->vendormodel->getvendorDetailEdit($id);
+	    $this->load->view('vendor/header');
+	    $this->load->view('vendor/adminVendorEdit',$data);
+	}
+	else{
+	    redirect(site_url('vendorlogin'));
+	}
+    }
     
      //PDF STARTS
     public function vendorPrint($sys_head_id)

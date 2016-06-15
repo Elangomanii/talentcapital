@@ -58,10 +58,10 @@
                                 <input class="form-control input-md" value="<?php echo $Vcode;?>" name="vendor_code" type="text" placeholder="code" readonly="">
                             </div>
                             
-                            <!--<div class="form-group">
-                              <label>Candidate Name</label>
-                                <input class="form-control input-md" value="" name="candidate_name" type="text" placeholder="Name">
-                            </div>-->
+                            <div class="form-group">
+                              <label>Hiring Partner Name</label>
+                                <input class="form-control input-md" value="<?php echo $vendorName[0]['name'];?>" readonly  name="" type="text" placeholder="Name">
+                            </div>
 			     <div class="form-group">
                               <label>First Name</label>
                                 <input class="form-control input-md" name="candidate_name" type="text" placeholder="First Name">
@@ -529,6 +529,7 @@
                                   <th><label>Duration To</label></th>
                                   <th><label>Location</label></th>
 				  <th><label>Reason Description</label></th>
+				  <th><label>File Upload</label></th>
                                   <th><button type="button" onclick="addMore1();" class="btn-add btn btn-default"><i class="fa fa-plus"></i></button></th>
                                 </tr>
                               </thead>
@@ -541,8 +542,20 @@
 				  <td><span class='input-group date'><input type="text" placeholder="" name="emp_duration_to[]" id="emp_duration_to" class="form-control input-md table_input input-group datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="Location" name="location[]" class="form-control input-md" type="text"></td>
 				  <td> <textarea name="empReasonDesc[]" id="empReasonDesc" class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
-                                </tr>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file" class="file_upload" name="file_employee_upload[]" id="file_employee_upload">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+				  
+			        </tr>
                                  <tr class="odd1 hide" id="optionTemplate1">
                                   <td> <input placeholder="Client Company" id="client_comp" class="form-control input-md" type="text" ></td>
                                   <td> <input placeholder="Payroll Company" id="payroll_comp" class="form-control input-md" type="text" ></td>
@@ -551,7 +564,18 @@
 				  <td><span class='input-group date'><input type="text" placeholder=""id="emp_duration_to" class="form-control input-md table_input input-group datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="Location" id="location" class="form-control input-md" type="text"></td>
 				  <td> <textarea id="empReasonDesc" class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" onclick="removeButton1($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input type="file" class="file_upload" id="file_employee_upload" >
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
+				  <td><center><button type="button" onclick="removeButton1($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
                                
                              
@@ -572,27 +596,79 @@
                           <table class="table table-hover">
                               <thead>
                                 <tr>
-                                  <th><label>Degree</label></th>
+                                  <th><label>Education</label></th>
                                   <th><label>Specialisation</label></th>
                                   <th><label>Duration From</label></th>
                                   <th><label>Duration To</label></th>
                                   <th><label>University</label></th>
                                   <th><label>Percentage</label></th>
-				  <th><label>Reason Description</label></th>
+				  <!--<th><label>Reason Description</label></th>-->
+				  <th><label>File Upload</label></th>
                                   <th><button type="button" onclick="addMore();" class="btn-add btn btn-default"><i class="fa fa-plus"></i></button></th>
                                 </tr>   
                               </thead>
                               <tbody>
                                 <tr class="odd" >
-                                  <td> <input placeholder="Degree" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
+                                  <td> <input placeholder="SSLC" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Specialisation" name="specialisation[]" id="specialisation" class="form-control input-md" type="text"></td>
                                   <td><span class='input-group date'><input type="text" name="edu_duration_from[]" id="edu_duration_from" class="form-control input-md    datepicker-dob" ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
 				  <td><span class='input-group date'><input type="text" name="edu_duration_to[]" id="edu_duration_to" class="form-control input-md  datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="University" name="university[]" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Percentage" name="percentage[]" class="form-control input-md" type="text"></td>
-				  <td> <textarea name="reasonDesc[]"  class="form-control input-md" id="reasonDesc" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+				 <!-- <td> <textarea name="reasonDesc[]"  class="form-control input-md" id="reasonDesc" rows="1" readonly></textarea></td>-->
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input  type="file" class="file_upload"  name="file_student_upload[]" id="file_student_upload">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
+				  
+				  <!--<td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>-->
                                 </tr>
+				<tr>
+				  <td> <input placeholder="HSC/Dip" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
+                                  <td> <input placeholder="Specialisation" name="specialisation[]" id="specialisation" class="form-control input-md" type="text"></td>
+                                  <td><span class='input-group date'><input type="text" name="edu_duration_from[]" id="edu_duration_from" class="form-control input-md    datepicker-dob" ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
+				  <td><span class='input-group date'><input type="text" name="edu_duration_to[]" id="edu_duration_to" class="form-control input-md  datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
+                                  <td> <input placeholder="University" name="university[]" class="form-control input-md" type="text"></td>
+                                  <td> <input placeholder="Percentage" name="percentage[]" class="form-control input-md" type="text"></td>
+				 <!-- <td> <textarea name="reasonDesc[]"  class="form-control input-md" id="reasonDesc" rows="1" readonly></textarea></td>-->
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input  type="file" class="file_upload"  name="file_student_upload[]" id="file_student_upload">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
+				  
+				</tr>
+				<td> <input placeholder="UG Degree" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
+                                  <td> <input placeholder="Specialisation" name="specialisation[]" id="specialisation" class="form-control input-md" type="text"></td>
+                                  <td><span class='input-group date'><input type="text" name="edu_duration_from[]" id="edu_duration_from" class="form-control input-md    datepicker-dob" ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
+				  <td><span class='input-group date'><input type="text" name="edu_duration_to[]" id="edu_duration_to" class="form-control input-md  datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
+                                  <td> <input placeholder="University" name="university[]" class="form-control input-md" type="text"></td>
+                                  <td> <input placeholder="Percentage" name="percentage[]" class="form-control input-md" type="text"></td>
+				 <!-- <td> <textarea name="reasonDesc[]"  class="form-control input-md" id="reasonDesc" rows="1" readonly></textarea></td>-->
+                                  <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input  type="file" class="file_upload"  name="file_student_upload[]" id="file_student_upload">
+					  </span>
+				      </span>
+				      <input type="text" id="" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
                                  <tr class="odd hide" id="optionTemplate">
                                   <td> <input placeholder="Degree" id="degree" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Specialisation" id="specialisation" class="form-control input-md" type="text"></td>
@@ -600,8 +676,19 @@
 				  <td><span class='input-group date'><input type="text" id="edu_duration_to" class="form-control input-md  input-group datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
                                   <td> <input placeholder="University" id="university" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Percentage" id="percentage" class="form-control input-md" type="text"></td>
-				  <td> <textarea id="reasonDesc"  class="form-control input-md" rows="1" readonly></textarea></td>
-                                  <td><center><button type="button" onclick="removeButton($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
+				  <!--<td> <textarea id="reasonDesc"  class="form-control input-md" rows="1" readonly></textarea></td>-->
+                               <td>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <span class="input-group-btn">
+					  <span class="btn btn-primary btn-file">
+					      Browse<input class="file_upload" type="file"  id="file_student_upload">
+					  </span>
+				      </span>
+				      <input type="text" id="file_student_upload" value="" class="form-control file_name" readonly >
+				    </div>
+				  </div></td>
+			          <td><center><button type="button" onclick="removeButton($(this));" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>
                                 </tr>
                                
                              
@@ -644,6 +731,7 @@
         //datepicker();
         $('.datepicker-dob').datetimepicker({
 	    format: 'DD-MMM-YYYY'
+	    
 	});        
         datepicker1();
         datepicker2();
@@ -729,14 +817,14 @@
 			}
 		    }
                 },                
-		//'skills[]': {
-		//    validators: {
-		//	
-		//	notEmpty: {
-		//	    message: 'The Skill is required and can\'t be empty'
-		//	},
-		//    }
-		//},
+		'skills[]': {
+		    validators: {
+			
+			notEmpty: {
+			    message: 'The Skill is required and can\'t be empty'
+			},
+		    }
+		},
                 total_exp: {
                     validators: {
                         notEmpty: {
@@ -944,14 +1032,14 @@
                         },
                     }
                 },                
-                'specialisation[]': {
-                    group: 'td',
-                    validators: {
-                        notEmpty: {
-                            message: 'The Specialzation is required and can\'t be empty'
-                        },
-                    }
-                },
+                //'specialisation[]': {
+                //    group: 'td',
+                //    validators: {
+                //        notEmpty: {
+                //            message: 'The Specialzation is required and can\'t be empty'
+                //        },
+                //    }
+                //},
                 'edu_duration_from[]': {
                     group: 'td',
                     trigger:'blur',
@@ -986,30 +1074,6 @@
                         },
                     }
                 },
-		'skills[]': {
-					validators: {
-					
-					notEmpty: {
-						message: 'The Skill is required and can\'t be empty'
-					},
-					}
-				},
-				'primary_other_skils': {
-                  
-                   validators: {
-                       notEmpty: {
-                           message: 'The Primary other skills'
-                       },
-                   }
-				},
-				'secondary_other_skils': {
-                  
-                   validators: {
-                       notEmpty: {
-                           message: 'The secondary other skills'
-                       },
-                   }
-               },
 //		'reasonDesc[]': {
 //                    group: 'td',
 //                    validators: {
@@ -1028,6 +1092,9 @@
 //                },
             }
         });        
+   
+   
+   
     });
     
   function checkDurationMonth($this) {
@@ -1082,34 +1149,38 @@
         $clone.find('[id="university"]').attr('name', 'university[]');
         $clone.find('[id="percentage"]').attr('name', 'percentage[]');
 	$clone.find('[id="reasonDesc"]').attr('name', 'reasonDesc[]');
+	$clone.find('[id="file_student_upload"]').attr('name', 'file_student_upload[]');
         
         
         
         
-        
-	$name   = $clone.find('[name="degree[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-        
-
-	$name   = $clone.find('[name="specialisation[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-        
-	$name   = $clone.find('[name="edu_duration_from[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);        
-        
-        $name   = $clone.find('[name="edu_duration_to[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-        
-        $name   = $clone.find('[name="university[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-        
-        $name   = $clone.find('[name="percentage[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-	
-	$name   = $clone.find('[name="reasonDesc[]"]');
-	$('#form_validation').bootstrapValidator('addField', $name);
-	
-        datepicker2();
+//        
+//	$name   = $clone.find('[name="degree[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//        
+//
+//	$name   = $clone.find('[name="specialisation[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//        
+//	$name   = $clone.find('[name="edu_duration_from[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);        
+//        
+//        $name   = $clone.find('[name="edu_duration_to[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//        
+//        $name   = $clone.find('[name="university[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//        
+//        $name   = $clone.find('[name="percentage[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//	
+//	$name   = $clone.find('[name="reasonDesc[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+//	
+//	$name   = $clone.find('[name="file_employee_upload[]"]');
+//	$('#form_validation').bootstrapValidator('addField', $name);
+        fileNameMapping();
+	datepicker2();
     }
     function removeButton($this) {
         var $row = $this.parents('.odd');
@@ -1126,7 +1197,8 @@
         $clone.find('[id="location"]').attr('name', 'location[]');
 	$clone.find('[id="empReasonDesc"]').attr('name', 'empReasonDesc[]');
 	
-        
+        $clone.find('[id="file_employee_upload"]').attr('name', 'file_employee_upload[]');
+	
 	$name   = $clone.find('[name="client_comp[]"]');
 	$('#form_validation').bootstrapValidator('addField', $name);
         
@@ -1147,8 +1219,11 @@
 	
 	$name   = $clone.find('[name="empReasonDesc[]"]');
 	$('#form_validation').bootstrapValidator('addField', $name);
+	
+	$name   = $clone.find('[name="file_employee_upload[]"]');
+	$('#form_validation').bootstrapValidator('addField', $name);
 
-
+        fileNameMapping();
         datepicker1();
     }
     function removeButton1($this) {
@@ -1162,9 +1237,7 @@
 	    var data=document.getElementById("PanImgPreview").src = oFREvent.target.result;
 	};
     }
-    
-    
-          function profilePic(){
+         function profilePic(){
 	  var oFReader = new FileReader();
 	  oFReader.readAsDataURL(document.getElementById("ProfileImgPreview").files[0]);
 	  oFReader.onload = function (oFREvent) {
@@ -1185,70 +1258,38 @@
     function datepicker2()
     {
 	$('*#edu_duration_from').datetimepicker({
-	    format: 'DD-MMM-YYYY'
+	    format: ' YYYY',
+	    viewMode: "years",
+	    minViewMode: "years"
 	});
 	$('*#edu_duration_to').datetimepicker({
-	    format: 'DD-MMM-YYYY'
+	    format: ' YYYY',
+	    viewMode: "years",
+	    minViewMode: "years"
 	}); 
     }
-       function primaryChange($this)
-   {
-	   
-		var values=$this.val();
-		if(values!=null)
-		{
-			var res = values.toString().split(",");
-			if(jQuery.inArray("Others", res)!='-1')
-			{
-				$(".primary").removeClass("hide");
-				$(".primaryName").attr("name","primary_other_skils");
-				$('#form_validation').bootstrapValidator('addField', "primary_other_skils");
-			
-			}
-			else
-			{			
-				
-				$('#form_validation').bootstrapValidator('revalidateField',"primary_other_skils");
-				$(".primaryName").removeAttr("name");
-				$(".primary").addClass("hide");
-			}
-		}
-		else
-		{			
-			$(".primaryName").removeAttr("name");
-			//$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
-			$(".primary").addClass("hide");
-		}
-		
-   }
-   function secondaryChange($this)
-   {
-		
-		var values=$this.val();
-		if(values!=null)
-		{
-			
-			var res = values.toString().split(",");
-			if(jQuery.inArray("Others", res)!='-1')
-			{
-				$(".secondary").removeClass("hide");
-				$(".secondaryName").attr("name","secondary_other_skils");
-				$('#form_validation').bootstrapValidator('addField', "secondary_other_skils");
-			
-			}
-			else
-			{
-				$('#form_validation').bootstrapValidator('revalidateField', "secondary_other_skils");
-				$(".secondaryName").removeAttr("name");
-				$(".secondary").addClass("hide");
-			}
-		}
-		else
-		{			
-			$(".secondaryName").removeAttr("name");
-			//$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
-			$(".secondary").addClass("hide");
-		}
-		
-   }
+    
+ $(document).ready(function() {
+   fileNameMapping();
+ });
+ function fileNameMapping(){
+  //alert('test');
+  $('#form_validation').on('change', '.file_upload', function() {
+   var $row=$(this).closest("tr");  
+   var imgpath=$(this).val();
+   console.log(imgpath);
+   
+   if (!imgpath==""){
+	var img=this.files[0].size;
+	var name=this.files[0].name;
+	var imgsize=img/1024;
+	console.log(this.files);
+	console.log(this.files[0]);
+	imgsize=Math.round(imgsize);
+	imgsize=imgsize;
+	$row.find(".file_name").val(name);
+      // readURL(this);
+      }
+    });
+ }
 </script>

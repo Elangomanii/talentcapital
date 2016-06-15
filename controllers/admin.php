@@ -229,6 +229,27 @@ class admin extends CI_Controller {
 	    redirect(site_url('admin'));   
 	}
     }
+    //admin profilr edit
+       function adminEdit($id){
+	
+	$session_data=$this->session->userdata('username_admin');
+	if(!empty($session_data)){
+	    if(isset($_POST['Update'])){
+		
+		$this->talentModel->adminEdit($id);
+		$this->session->set_flashdata('status','A old record updated successfully');
+		redirect("admin/addUserView");
+	    }
+	    $data['userEdits']=$this->talentModel->getuserDetailEdit($id);
+	    //print_r($data['userEdits']);exit;
+	 
+	    $this->load->view('admin/header');
+	    $this->load->view('admin/adminEditUser',$data);
+	}
+	else{
+	    redirect(site_url('admin'));
+	}
+    }
     
     //PDF STARTS
     public function hiringPartnerPrint($sys_head_id)

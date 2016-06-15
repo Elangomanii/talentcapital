@@ -770,19 +770,19 @@ $status = $this->session->flashdata('status');
 		}
 	    }
 	},
-	'specialisation[]':
-	{
-	    message: 'Specialization is not valid',
-	    trigger:'blur',
-	    group:'td',
-	    validators:
-	    {
-		notEmpty:
-		{
-		    message: 'Specialztion is required and can\'t be empty'
-		}
-	    }
-	},
+	//'specialisation[]':
+	//{
+	//    message: 'Specialization is not valid',
+	//    trigger:'blur',
+	//    group:'td',
+	//    validators:
+	//    {
+	//	notEmpty:
+	//	{
+	//	    message: 'Specialztion is required and can\'t be empty'
+	//	}
+	//    }
+	//},
 	'edu_duration_from[]':
 	{
 	    message: 'Education Duration From is not valid',
