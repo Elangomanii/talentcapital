@@ -103,7 +103,19 @@ class vendorlogin extends CI_Controller {
     }
     //vendor edit
     
-    
+    function vendorDelete($id){
+	$session_data = $this->session->userdata('vendorusername');
+	if(!empty($session_data))
+	{
+        $this->vendormodel->vendorDelete($id);
+        $this->session->set_flashdata('status','A record deleted successfully');
+        redirect("vendorlogin/vendor");
+	}
+	else{
+	    
+	    redirect(site_url('vendorlogin'));   
+	}
+    }
  function adminVendorEdit($id){
 	$session_data=$this->session->userdata('vendor_code');
 	if(!empty($session_data)){

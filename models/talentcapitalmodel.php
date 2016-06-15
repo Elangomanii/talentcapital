@@ -622,7 +622,7 @@
 		    'edu_duration_to'=>$_POST['edu_duration_to'][$j],
 		    'university'=>$_POST['university'][$j],
 		    'percentage'=>$_POST['percentage'][$j],
-		    'reason_desc'=>$_POST['reasonDesc'][$j]
+		    'reason_desc'=>$_POST['reasonDesc'][$j],
 		     'file_student_upload'=>$file_name[$j]
 		);
 		$this->db->insert('educational_details',$data);                                            

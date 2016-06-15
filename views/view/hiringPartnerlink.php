@@ -126,7 +126,8 @@
                             <!--</div>-->
                             
 			    
-			     <div class="form-group">
+			     
+			    <div class="form-group">
                                 <label>Primary Skills <span style="color:#EB8B11">*</span></label>
                                 <select multiple class="form-control chzn-select input-sm" onchange="primaryChange($(this))" name="skills[]">
                                   <option>C</option>
@@ -140,14 +141,14 @@
                                   <option>Ruby</option>
                                   <option>Javascript</option>
                                   <option>SQL</option>
-								  <option value="Others">Others</option>
+				  <option value="Others">Others</option>
                                 </select>
                             </div>
-							 <div class="form-group primary hide">
+			      <div class="form-group primary hide">
                                 <label>Other Skills<span style="color:#EB8B11">*</span></label>
                                 <input class="form-control primaryName input-md" value="<?php echo $getApplicantDetails[0]['primary_other_skils'];?>" name="" type="text" placeholder="primary other skils">
-                            </div>
-							<div class="form-group">
+                              </div>
+			      <div class="form-group">
                                 <label>Secondary Skills <span style="color:#EB8B11">*</span></label>
                                 <select multiple class="form-control chzn-select input-sm" onchange="secondaryChange($(this))" name="SecondarySkills[]">
                                   <option>C</option>
@@ -161,14 +162,13 @@
                                   <option>Ruby</option>
                                   <option>Javascript</option>
                                   <option>SQL</option>
-								  <option  value="Others">Others</option>
+				<option  value="Others">Others</option>
                                 </select>
                             </div>
-							<div class="form-group secondary hide" >
+			      <div class="form-group secondary hide" >
                                 <label>Other Skills<span style="color:#EB8B11">*</span></label>
                                 <input class="form-control secondaryName input-md" value="<?php echo $getApplicantDetails[0]['secondary_other_skils'];?>" name="" type="text" placeholder="secondary other skils">
                             </div>
-			    
 			      <div class="">
                                 <label>Total Experience</label>
                                 <div class="row">
@@ -500,10 +500,37 @@
                             <div id="team" class="form-group">
                                 <h2 class="headingLine" >Team Size</h2>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label>Number</label>
                                 <input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">
+                            </div>-->
+			      <div class="form-group">
+                                <label>Select Your Team size</label>
+				<select class="form-control input-sm" name="team_size_name">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				  <option value="8">8</option>
+				  <option value="9">9</option>
+				  <option value="10">10</option>
+				  <option value="11">11</option>
+				  <option value="12">12</option>
+				  <option value="13">13</option>
+				  <option value="14">14</option>
+				  <option value="15">15</option>
+				  <option value="16">16</option>
+				  <option value="17">17</option>
+				  <option value="18">18</option>
+				  <option value="19">19</option>
+				  <option value="20">20</option>
+				</select>
+                                <!--<input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">-->
                             </div>
+
                             <div class="form-group">
                                 <label>Contact Number <span style="color:#EB8B11">*</span> </label>
                                 <input class="form-control input-md" name="team_contact_no" type="text" placeholder="Contact Number">
@@ -631,7 +658,7 @@
 				  <!--<td><center><button type="button" class="btn btn-remove btn-default btn-sm removeButton"><i class="fa fa-minus"></i></button></center></td>-->
                                 </tr>
 				<tr>
-				  <td> <input placeholder="HSC/Dip" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
+				  <td> <input placeholder="HSC/Diploma" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Specialisation" name="specialisation[]" id="specialisation" class="form-control input-md" type="text"></td>
                                   <td><span class='input-group date'><input type="text" name="edu_duration_from[]" id="edu_duration_from" class="form-control input-md    datepicker-dob" ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
 				  <td><span class='input-group date'><input type="text" name="edu_duration_to[]" id="edu_duration_to" class="form-control input-md  datepicker-dob"  ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
@@ -817,14 +844,38 @@
 			}
 		    }
                 },                
+		//'skills[]': {
+		//    validators: {
+		//	
+		//	notEmpty: {
+		//	    message: 'The Skill is required and can\'t be empty'
+		//	},
+		//    }
+		//},
 		'skills[]': {
-		    validators: {
-			
-			notEmpty: {
-			    message: 'The Skill is required and can\'t be empty'
+		  validators: {
+		  
+		  notEmpty: {
+			  message: 'The Skill is required and can\'t be empty'
+		  },
+		  }
+	  },
+			'primary_other_skils': {
+	  
+	   validators: {
+	       notEmpty: {
+		   message: 'The Primary other skills'
+	       },
+	   }
 			},
-		    }
-		},
+			'secondary_other_skils': {
+	  
+	   validators: {
+	       notEmpty: {
+		   message: 'The secondary other skills'
+                       },
+                   }
+               },
                 total_exp: {
                     validators: {
                         notEmpty: {
@@ -1096,7 +1147,66 @@
    
    
     });
-    
+    function primaryChange($this)
+   {
+	   
+		var values=$this.val();
+		if(values!=null)
+		{
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".primary").removeClass("hide");
+				$(".primaryName").attr("name","primary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "primary_other_skils");
+			
+			}
+			else
+			{			
+				
+				$('#form_validation').bootstrapValidator('revalidateField',"primary_other_skils");
+				$(".primaryName").removeAttr("name");
+				$(".primary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".primaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
+			$(".primary").addClass("hide");
+		}
+		
+   }
+   function secondaryChange($this)
+   {
+		
+		var values=$this.val();
+		if(values!=null)
+		{
+			
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".secondary").removeClass("hide");
+				$(".secondaryName").attr("name","secondary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "secondary_other_skils");
+			
+			}
+			else
+			{
+				$('#form_validation').bootstrapValidator('revalidateField', "secondary_other_skils");
+				$(".secondaryName").removeAttr("name");
+				$(".secondary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".secondaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
+			$(".secondary").addClass("hide");
+		}
+		
+   }
   function checkDurationMonth($this) {
     
     var $row = $this.parents('.odd');

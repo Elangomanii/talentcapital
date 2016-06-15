@@ -1,4 +1,4 @@
-<?php $path=$this->config->item('base_urlwebsite');?>
+<?php echo $path=$this->config->item('base_urlwebsite');?>
 <style>
     .headingLine{
         font-size:17px;
