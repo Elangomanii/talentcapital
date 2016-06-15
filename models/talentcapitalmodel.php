@@ -588,7 +588,7 @@
 		    'emp_duration_to'=>$_POST['emp_duration_to'][$i],
 		    'location'=>$_POST['location'][$i],
 		    'reason_desc'=>$_POST['empReasonDesc'][$i],
-		    'file_student_upload'=>$file_name[$i],
+		    'file_employee_upload'=>$file_name[$i],
 		);
 		
 		$this->db->insert('employement_details',$data);                    

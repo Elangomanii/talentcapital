@@ -28,56 +28,24 @@ class talentModel extends CI_Model {
     
     //add
     function addUser(){
-	
-	    $sql = "SELECT tcie_number FROM tci_code";
-	    $codeTcie = $this->db->query($sql, $return_object = TRUE)->result_array();
-	    $tcie = $codeTcie[0]['tcie_number'];
-	    $tcieCode='TCIE'.$tcie;
-	    $IntEmpCode=$tcieCode;
-	
-	    $folderPath = $config['upload_path'] = 'upload/';
+	  $folderPath = $config['upload_path'] = 'upload/';
             $config['allowed_types'] = 'gif|jpg|png|pdf';
                   
             $this->load->library('upload', $config);
             $this->upload->do_upload('user_image');
             $data = $this->upload->data();
             $filePath=$folderPath.$data['file_name'];
-	    $role=$this->input->post('user_role');
-	    if($role=="Admin"){
-		$data = array(
-		'role'=>$role,
-		'user_name'=>$this->input->post('username'),
-		'password'=>$this->input->post('password'),
-		'email'=>$this->input->post('email'),
-		'user_image'=>$filePath,
-		'status'=>'Y',
-		);
-	    }else{
-		$data = array(
-		'role'=>$role,
-		'user_name'=>$this->input->post('username'),
-		'password'=>$this->input->post('password'),
-		'email'=>$this->input->post('email'),
-		'user_image'=>$filePath,
-		'intemp_code'=>$IntEmpCode,
-		'status'=>'Y',
-		);
-	    }
+	$data = array(
+	    'role'=>$this->input->post('user_role'),
+	    'user_name'=>$this->input->post('username'),
+	    'password'=>$this->input->post('password'),
+	    'email'=>$this->input->post('email'),
+	    'user_image'=>$filePath,
+	    'status'=>'Y',
+	    );
 	      
 	    $this->db->insert("login_auth",$data);
-	    $IntEmpTcie = substr($IntEmpCode,4);
-	    $newCode = $IntEmpTcie + 1;
-	    $this->tcieUpdate($IntEmpTcie,$newCode);
 	    
-    }
-    
-    function tcieUpdate($IntEmpTcie,$newCode)
-    {
-	$this->db->where('tcie_number', $IntEmpTcie);
-	$data= array(
-	    'tcie_number'=>$newCode,
-	);
-	$select = $this->db->update('tci_code',$data);
     }
     
     function getuserDetails($id){

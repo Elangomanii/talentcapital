@@ -208,6 +208,60 @@
                                     <option value="4months">4 Months</option>
                                     <option value="5months">5 Months</option>
                                     <option value="6months">6 Months</option>
+                                    <option value="7months">7 Months</option>
+                                    <option value="8months">8 Months</option>
+                                    <option value="9months">9 Months</option>
+                                    <option value="10months">10 Months</option>
+                                    <option value="11months">11 Months</option>
+                                  </select>
+                                </div>
+                                 </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                              <label>Revelant Exp</label>
+                                <input class="form-control input-md" name="relevant_exp" type="text" placeholder="Revelant Exp">
+                            </div>-->
+			    
+			      <div class="">
+                                <label>Revelant Exp</label>
+                                <div class="row">
+                                <div class="form-group col-md-4">
+                                  <select name="relevant_exp_year" class="form-control">
+                                     <option selected>In Year</option>
+                                    <option value="1years">1 Year</option>
+                                    <option value="2years">2 Years</option>
+                                    <option value="3years">3 Years</option>
+                                    <option value="4years">4 Years</option>
+                                    <option value="5years">5 Years</option>
+                                    <option value="6years">6 Years</option>
+                                    <option value="7years">7 Years</option>
+                                    <option value="8years">8 Years</option>
+                                    <option value="9years">9 Years</option>
+                                    <option value="10years">10 Years</option>
+                                    <option value="11years">11 Years</option>
+                                    <option value="12years">12 Years</option>
+                                    <option value="12years">13 Years</option>
+                                    <option value="14years">14 Years</option>
+                                    <option value="15years">15 Years</option>
+                                    <option value="16years">16 Years</option>
+                                    <option value="17years">17 Years</option>
+                                    <option value="18years">18 Years</option>
+                                    <option value="19years">19 Years</option>
+                                    <option value="20years">20 Years</option>
+                                    <option value="21years">21 Years</option>
+                                  </select>
+                                </div>
+                                 <div class="form-group col-md-4">
+                                  <select name="relevant_exp_month" class="form-control">
+                                    <option selected>In Months</option>
+				    <option value="0months">0 Months</option>
+                                    <option value="1months">1 Months</option>
+                                    <option value="2months">2 Months</option>
+                                    <option value="3months">3 Months</option>
+                                    <option value="4months">4 Months</option>
+                                    <option value="5months">5 Months</option>
+                                    <option value="6months">6 Months</option>
                                     <option value="7months">7Months</option>
                                     <option value="8months">8 Months</option>
                                     <option value="9months">9 Months</option>
@@ -218,25 +272,20 @@
                                  </div>
                             </div>
 
-                            <div class="form-group">
-                              <label>Revelant Exp</label>
-                                <input class="form-control input-md" name="relevant_exp" type="text" placeholder="Revelant Exp">
-                            </div>
                            
 			    <div class="">
                                 <label>Notice Period</label>
                                 
 				  <div class="form-group">
 				    <select name="notice_period" class="form-control">
-				       <option selected>Notice Period</option>
+				       <option selected disabled>Select</option>
 				       <option value="Immediate">Immediate</option>
 					<option value="7">7 Days</option>
 					<option value="15">15 Days</option>
 					<option value="30">30 Days</option>
 					<option value="45">45 Days</option>
 					<option value="60">60 Days</option>
-					<option value="90">90 Days</option>
-					<option value="90++">90 Days and Above</option>
+					<option value="90">90 Days & Above</option>
 				     </select>
 				  </div>
 				
@@ -311,7 +360,7 @@
                                 <input class="form-control input-md" name="expected_ctc" type="text" placeholder="Expected CTC">
                             </div>-->
 			    
-			     <div class="form-group">
+			     <!--<div class="form-group">
 			      <label>Expected CTC</label>
 				    <select name="expected_ctc" class="form-control">
 				      <option selected>Expected CTC</option>
@@ -324,7 +373,65 @@
 				      <option value="700000">700000-800000</option>
 				      <option value="800000">800000 Above</option>
 				     </select>
-				  </div>
+			      </div>-->
+			      			       <div class="">
+                                <label>Expected CTC</label>
+                                <div class="row">
+                                <div class="form-group col-md-4">
+                                  <select name="expected_ctc_lakhs" class="form-control">
+                                     <option selected>In Lakhs</option>
+                                    <option value="1">1 Lakhs</option>
+                                    <option value="2">2 Lakhs</option>
+                                    <option value="3">3 Lakhs</option>
+                                    <option value="4">4 Lakhs</option>
+                                    <option value="5">5 Lakhs</option>
+                                    <option value="6">6 Lakhs</option>
+                                    <option value="7">7 Lakhs</option>
+                                    <option value="8">8 Lakhs</option>
+                                    <option value="9">9 Lakhs</option>
+                                    <option value="10">10 Lakhs</option>
+                                    <option value="11">11 Lakhs</option>
+                                    <option value="12">12 Lakhs</option>
+                                    <option value="12">13 Lakhs</option>
+                                    <option value="14">14 Lakhs</option>
+                                    <option value="15">15 Lakhs</option>
+                                    <option value="16">16 Lakhs</option>
+                                    <option value="17">17 Lakhs</option>
+                                    <option value="18">18 Lakhs</option>
+                                    <option value="19">19 Lakhs</option>
+                                    <option value="20">20 Lakhs</option>
+                                  
+                                  </select>
+                                </div>
+                                 <div class="form-group col-md-4">
+                                  <select name="expected_ctc_thousands" class="form-control">
+                                    <option selected>In Thousands</option>
+				    <option value="0">0 Thousands</option>
+                                    <option value="1">1 Thousands</option>
+                                    <option value="2">2 Thousands</option>
+                                    <option value="3">3 Thousands</option>
+                                    <option value="4">4 Thousands</option>
+                                    <option value="5">5 Thousands</option>
+                                    <option value="6">6 Thousands</option>
+                                    <option value="7">7 Thousands</option>
+                                    <option value="8">8 Thousands</option>
+                                    <option value="9">9 Thousands</option>
+                                    <option value="10">10 Thousands</option>
+                                    <option value="11">11 Thousands</option>
+				    <option value="12">12 Thousands</option>
+                                    <option value="13">13 Thousands</option>
+                                    <option value="14">14 Thousands</option>
+                                    <option value="15">15 Thousands</option>
+                                    <option value="16">16 Thousands</option>
+                                    <option value="17">17 Thousands</option>
+                                    <option value="18">18 Thousands</option>
+                                    <option value="19">19 Thousands</option>
+                                    <option value="20">20 Thousands</option>
+                                  </select>
+                                </div>
+                                 </div>
+                            </div>
+
                             <div class="">
                                 <label>Date Of Birth</label>
                                 <div class="row">
@@ -489,47 +596,122 @@
                               <label>Interview Timing</label>
                                 <input class="form-control input-md" name="interview_timing" id="datetimepicker1" type="text" placeholder="Interview Timing">
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label>Educational Gap(in years)</label>
                                 <input class="form-control input-md" name="educational_gap_year" type="text" placeholder="Educational Gap(in years)">
+                            </div>-->
+			      <div class="">
+                                <label>Educational Gap(in years)</label>
+                                <div class="row">
+                                <div class="form-group col-md-4">
+                                  <select name="educational_gap_year" class="form-control">
+                                     <option selected>In Year</option>
+				    <option value="0years">0 Year</option>
+                                    <option value="1years">1 Year</option>
+                                    <option value="2years">2 Years</option>
+                                    <option value="3years">3 Years</option>
+                                    <option value="4years">4 Years</option>
+                                    <option value="5years">5 Years</option>
+                                    <option value="6years">6 Years</option>
+                                    <option value="7years">7 Years</option>
+                                    <option value="8years">8 Years</option>
+                                    <option value="9years">9 Years</option>
+                                    <option value="10years">10 Years</option>
+                                    <option value="11years">11 Years</option>
+                                    <option value="12years">12 Years</option>
+                                    <option value="12years">13 Years</option>
+                                    <option value="14years">14 Years</option>
+                                    <option value="15years">15 Years</option>
+                                    <option value="16years">16 Years</option>
+                                    <option value="17years">17 Years</option>
+                                    <option value="18years">18 Years</option>
+                                    <option value="19years">19 Years</option>
+                                    <option value="20years">20 Years</option>
+                                    <option value="21years">21 Years</option>
+                                  </select>
+                                </div>
+                                 <div class="form-group col-md-4">
+                                  <select name="educational_gap_month" class="form-control">
+                                    <option selected>In Months</option>
+				    <option value="0months">0 Months</option>
+                                    <option value="1months">1 Months</option>
+                                    <option value="2months">2 Months</option>
+                                    <option value="3months">3 Months</option>
+                                    <option value="4months">4 Months</option>
+                                    <option value="5months">5 Months</option>
+                                    <option value="6months">6 Months</option>
+                                    <option value="7months">7 Months</option>
+                                    <option value="8months">8 Months</option>
+                                    <option value="9months">9 Months</option>
+                                    <option value="10months">10 Months</option>
+                                    <option value="11months">11 Months</option>
+                                  </select>
+                                </div>
+                                 </div>
                             </div>
-                            <div class="form-group">
+
+                            <!--<div class="form-group">
                                 <label>Carrier Gap(in years)</label>
                                 <input class="form-control input-md" name="career_gap_year" type="text" placeholder="Year">
+                            </div>-->
+			    			      <div class="">
+                                <label>Carrier Gap(in years)</label>
+                                <div class="row">
+                                <div class="form-group col-md-4">
+                                  <select name="career_gap_year" class="form-control">
+                                     <option selected>In Year</option>
+				    <option value="0years">0 Year</option>
+                                    <option value="1years">1 Year</option>
+                                    <option value="2years">2 Years</option>
+                                    <option value="3years">3 Years</option>
+                                    <option value="4years">4 Years</option>
+                                    <option value="5years">5 Years</option>
+                                    <option value="6years">6 Years</option>
+                                    <option value="7years">7 Years</option>
+                                    <option value="8years">8 Years</option>
+                                    <option value="9years">9 Years</option>
+                                    <option value="10years">10 Years</option>
+                                    <option value="11years">11 Years</option>
+                                    <option value="12years">12 Years</option>
+                                    <option value="12years">13 Years</option>
+                                    <option value="14years">14 Years</option>
+                                    <option value="15years">15 Years</option>
+                                    <option value="16years">16 Years</option>
+                                    <option value="17years">17 Years</option>
+                                    <option value="18years">18 Years</option>
+                                    <option value="19years">19 Years</option>
+                                    <option value="20years">20 Years</option>
+                                    <option value="21years">21 Years</option>
+                                  </select>
+                                </div>
+                                 <div class="form-group col-md-4">
+                                  <select name="career_gap_month" class="form-control">
+                                    <option selected>In Months</option>
+				    <option value="0months">0 Months</option>
+                                    <option value="1months">1 Months</option>
+                                    <option value="2months">2 Months</option>
+                                    <option value="3months">3 Months</option>
+                                    <option value="4months">4 Months</option>
+                                    <option value="5months">5 Months</option>
+                                    <option value="6months">6 Months</option>
+                                    <option value="7months">7Months</option>
+                                    <option value="8months">8 Months</option>
+                                    <option value="9months">9 Months</option>
+                                    <option value="10months">10 Months</option>
+                                    <option value="11months">11 Months</option>
+                                  </select>
+                                </div>
+                                 </div>
                             </div>
+
                             <div id="team" class="form-group">
                                 <h2 class="headingLine" >Team Size</h2>
                             </div>
-                            <!--<div class="form-group">
-                                <label>Number</label>
+                            <div class="form-group">
+                                <label>Team Member Name</label>
                                 <input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">
-                            </div>-->
-			      <div class="form-group">
-                                <label>Select Your Team size</label>
-				<select class="form-control input-sm" name="team_size_name">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				  <option value="9">9</option>
-				  <option value="10">10</option>
-				  <option value="11">11</option>
-				  <option value="12">12</option>
-				  <option value="13">13</option>
-				  <option value="14">14</option>
-				  <option value="15">15</option>
-				  <option value="16">16</option>
-				  <option value="17">17</option>
-				  <option value="18">18</option>
-				  <option value="19">19</option>
-				  <option value="20">20</option>
-				</select>
-                                <!--<input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">-->
                             </div>
+			      
 
                             <div class="form-group">
                                 <label>Contact Number <span style="color:#EB8B11">*</span> </label>
