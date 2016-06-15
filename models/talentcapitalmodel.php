@@ -629,7 +629,7 @@
             }
         }
 	
-	function hiringPartnerLinkAdd($code)
+	function hiringPartnerLinkAdd($code,$loginType)
         {
 	    
 	    //echo "<pre>";
@@ -688,7 +688,8 @@
                 'team_size_name'=>$this->input->post('team_size_name'),
                 'team_contact_no'=>$this->input->post('team_contact_no'),
 		'email_random_code'=>$ramdomString,
-		'login_types'=>'internalEmp',
+		'login_types'=>$loginType,
+		'candidate_status'=>'Shortlisted',
             );
 	    //echo "<pre>";
 	    //print_r($data);

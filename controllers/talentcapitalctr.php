@@ -226,7 +226,8 @@ class talentcapitalctr extends CI_Controller {
 	    if(isset($_POST['save'])){
 		//print_r($_POST);
 		//exit;
-		$result=$this->tc_model->hiringPartnerLinkAdd($code);
+		$loginType = "internalEmp";
+		$result=$this->tc_model->hiringPartnerLinkAdd($code,$loginType);
 		$this->session->set_flashdata('status', 'Your Information has been Succesfully regeistered to talent capital');
 		redirect('talentcapitalctr/successMsg');		
 	    }
