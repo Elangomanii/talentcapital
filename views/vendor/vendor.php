@@ -44,9 +44,59 @@ $status = $this->session->flashdata('status');
 						    <th data-class="expand">Name</th>
 						    <th data-hide="phone,tablet">Mobile Number</th>
 						    <th data-hide="phone,tablet">Email</th>
-						    <th data-hide="phone,tablet">Pan Number</th>
-						    <th data-hide="phone,tablet">Pan Image</th>
-						    <th>Location</th>
+						    <th data-hide="phone,tablet">skills</th>
+						    <th data-hide="phone,tablet">Primary other Skills</th>
+						    <th data-hide="phone,tablet">Secondary skills</th>
+						    <th data-hide="phone,tablet">Secondary other Skills</th>
+						    <th data-hide="phone,tablet">Total experience</th>
+						    <th data-hide="phone,tablet">Total experience Month</th>
+						    <th data-hide="phone,tablet">relevent experience</th>
+						    <th data-hide="phone,tablet">Notice Period</th>
+						    <th data-hide="phone,tablet">Current ctc</th>
+						    <th data-hide="phone,tablet">Expected ctc</th>
+						    <th data-hide="phone,tablet">Day</th>
+						    <th data-hide="phone,tablet">Month </th>
+						    <th data-hide="phone,tablet">Year</th>
+						    <th data-hide="phone,tablet">Pancard No</th>
+						    <th data-hide="phone,tablet">Pancard Attach</th>
+						    <th data-hide="phone,tablet">Language_known</th>
+						    <th data-hide="phone,tablet">Current_location</th>
+						    <th data-hide="phone,tablet">Preferred_location</th>
+						    <th data-hide="phone,tablet">Interview_timing</th>
+						    <th data-hide="phone,tablet">Profile_pic</th>
+						    <th data-hide="phone,tablet">Educational_gap_year</th>
+						    <th data-hide="phone,tablet">Career_gap_year</th>
+						    <th data-hide="phone,tablet">Team_size_name</th>
+						    <th data-hide="phone,tablet">Team_contact_no</th>
+						    <th data-hide="phone,tablet">Email_random_code</th>
+						    <th data-hide="phone,tablet">Password</th>
+						    <th data-hide="phone,tablet">Password_token</th>
+						    <th data-hide="phone,tablet">Login_types</th>
+						    
+						    
+						    <!--<th data-hide="phone,tablet">Team_size_name</th>
+						    <th data-hide="phone,tablet">Team_contact_no</th>-->
+						    
+						    <th data-hide="phone,tablet">Client Company</th>
+						    <th data-hide="phone,tablet">Payroll Company</th>
+						    <th data-hide="phone,tablet">Designation</th>
+						    <th data-hide="phone,tablet">Emp_duration_from</th>
+						    <th data-hide="phone,tablet">Emp_duration_to</th>
+						    <th data-hide="phone,tablet">location</th>
+						    <!--<th data-hide="phone,tablet">Reason_desc</th>-->
+						    
+						    
+						    <th data-hide="phone,tablet">Degree</th>
+						    <th data-hide="phone,tablet">Specialisation</th>
+						    <th data-hide="phone,tablet">Edu_duration_from</th>
+						    <th data-hide="phone,tablet">Edu_duration_to</th>
+						    <th data-hide="phone,tablet">University</th>
+						    <th data-hide="phone,tablet">Percentage</th>
+						    <th data-hide="phone,tablet">Reason_desc</th>
+						    
+						    
+						    
+						   <!-- <th>Location</th>-->
 						    <th>Action</th>
 						    
 						</tr>
@@ -59,9 +109,53 @@ $status = $this->session->flashdata('status');
 						    <td id="USER_NAME" style="cursor:pointer;" class="clickable-row" data-href='<?php echo site_url('vendorlogin/vendorEditView/'.$row['id'])?>'><u><?php echo $row['candidate_name']; ?></u></td>					    
 						    <td><?php echo $row['mobile_number']; ?></td>
 						    <td id="EMAIL"><?php echo $row['mail_id']; ?></td>
-						    <td><?php echo $row['skills']; ?></td>				    
+						    <td><?php echo $row['skills']; ?></td>
+						    <td><?php echo $row['primary_other_skils']; ?></td>
+						    <td><?php echo $row['SecondarySkills']; ?></td>
+						    <td><?php echo $row['secondary_other_skils']; ?></td>
+						    <td><?php echo $row['total_exp_year']; ?></td>
+						    <td><?php echo $row['total_exp_month']; ?></td>
+						    <td><?php echo $row['relevant_exp']; ?></td>
+						    <td><?php echo $row['notice_period']; ?></td>
+						    <td><?php echo $row['current_ctc']; ?></td>
+						    <td><?php echo $row['expected_ctc']; ?></td>
+						    <td><?php echo $row['day']; ?></td>
+						    <td><?php echo $row['month']; ?></td>
+						    <td><?php echo $row['year']; ?></td>
 						    <td><?php echo $row['pan_card_no']; ?></td>
-						    <td><?php echo $row['current_location']; ?></td>					     
+						    <td><img src="<?php echo site_url($row['pan_card_attach']);?>" width="50" height="50"></td>
+						    <td><?php echo $row['language_known']; ?></td>
+						    <td><?php echo $row['current_location']; ?></td>
+						    <td><?php echo $row['preferred_location']; ?></td>
+						    <td><?php echo $row['interview_timing']; ?></td>
+						    <td><img src="<?php echo site_url($row['profile_pic']); ?>" width="50" height="50"></td>
+						    <td><?php echo $row['educational_gap_year']; ?></td>
+						    <td><?php echo $row['career_gap_year']; ?></td>
+						    <td><?php echo $row['team_size_name']; ?></td>
+						    <td><?php echo $row['team_contact_no']; ?></td>
+						    <td><?php echo $row['email_random_code']; ?></td>
+						    <td><?php echo $row['password']; ?></td>
+						    <td><?php echo $row['password_token']; ?></td>
+						    <td><?php echo $row['login_types']; ?></td>
+						    <!--<td><?php echo $row['current_location']; ?></td>-->
+						    
+						    <td><?php echo $row['client_comp']; ?></td>
+						    <td><?php echo $row['payroll_comp']; ?></td>
+						    <td><?php echo $row['designation']; ?></td>
+						    <td><?php echo $row['emp_duration_from']; ?></td>
+						    <td><?php echo $row['emp_duration_to']; ?></td>
+						    <td><?php echo $row['location']; ?></td>
+						    <!--<td><?php echo $row['reason_desc']; ?></td>-->
+						    
+						    
+						    <td><?php echo $row['degree']; ?></td>
+						    <td><?php echo $row['specialisation']; ?></td>
+						    <td><?php echo $row['edu_duration_from']; ?></td>
+						    <td><?php echo $row['edu_duration_to']; ?></td>
+						    <td><?php echo $row['university']; ?></td>
+						    <td><?php echo $row['percentage']; ?></td>
+						    <td><?php echo $row['reason_desc']; ?></td>
+						    
 						   
 						   
 						    <td>
