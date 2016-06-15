@@ -285,7 +285,7 @@
 					<option value="30">30 Days</option>
 					<option value="45">45 Days</option>
 					<option value="60">60 Days</option>
-					<option value="90">90 Days & Above</option>
+					<option value="90++">90 Days & Above</option>
 				     </select>
 				  </div>
 				
@@ -297,7 +297,7 @@
                                 <label>Current CTC <span style="color:#EB8B11">*</span></label>
                                 <input class="form-control input-md" name="current_ctc" type="text" placeholder="Current CTC">
                             </div>-->
-			                                     <div class="">
+			      <div class="">
                                 <label>Current CTC</label>
                                 <div class="row">
                                 <div class="form-group col-md-4">
@@ -374,7 +374,7 @@
 				      <option value="800000">800000 Above</option>
 				     </select>
 			      </div>-->
-			      			       <div class="">
+			      <div class="">
                                 <label>Expected CTC</label>
                                 <div class="row">
                                 <div class="form-group col-md-4">
@@ -654,7 +654,7 @@
                                 <label>Carrier Gap(in years)</label>
                                 <input class="form-control input-md" name="career_gap_year" type="text" placeholder="Year">
                             </div>-->
-			    			      <div class="">
+			      <div class="">
                                 <label>Carrier Gap(in years)</label>
                                 <div class="row">
                                 <div class="form-group col-md-4">
@@ -709,7 +709,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Team Member Name</label>
-                                <input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Size in Number">
+                                <input class="form-control input-md" name="team_size_name" type="text" placeholder="Team Member Name">
                             </div>
 			      
 
@@ -859,7 +859,7 @@
 				    </div>
 				  </div></td>
 				  
-				</tr>
+				</tr><tr>
 				<td> <input placeholder="UG Degree" name="degree[]" id="degree" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Specialisation" name="specialisation[]" id="specialisation" class="form-control input-md" type="text"></td>
                                   <td><span class='input-group date'><input type="text" name="edu_duration_from[]" id="edu_duration_from" class="form-control input-md    datepicker-dob" ><span class="input-group-addon" ><span class="glyphicon glyphicon-calendar"></span></span></span></td>
@@ -877,7 +877,7 @@
 				      </span>
 				      <input type="text" id="" value="" class="form-control file_name" readonly >
 				    </div>
-				  </div></td>
+				  </div></td></tr>
                                  <tr class="odd hide" id="optionTemplate">
                                   <td> <input placeholder="Degree" id="degree" class="form-control input-md" type="text"></td>
                                   <td> <input placeholder="Specialisation" id="specialisation" class="form-control input-md" type="text"></td>
@@ -1550,14 +1550,12 @@
     function datepicker2()
     {
 	$('*#edu_duration_from').datetimepicker({
-	    format: ' YYYY',
-	    viewMode: "years",
-	    minViewMode: "years"
+	    format:'DD-MMM-YYYY'
+	    
 	});
 	$('*#edu_duration_to').datetimepicker({
-	    format: ' YYYY',
-	    viewMode: "years",
-	    minViewMode: "years"
+	    format:'DD-MMM-YYYY'
+	   
 	}); 
     }
     
