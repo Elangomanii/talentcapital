@@ -187,7 +187,8 @@
 		'password'=>$this->input->post('confirmPassword'),
 		'password_token'=>'',
             );
-            $this->db->update('register_users', $data);
+	    //echo "<pre>";print_r($data);exit;
+            $this->db->update('vendor', $data);
             $result = $this->db->affected_rows();
 	    if($result==0)
 	    {

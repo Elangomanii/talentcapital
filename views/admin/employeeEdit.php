@@ -63,7 +63,7 @@ $status = $this->session->flashdata('status');
                                 <label>Email ID <span style="color:#EB8B11">*</span></label>
                                 <input readonly class="form-control input-md" value="<?php echo $employeeEdit[0]['mail_id'];?>" name="mail_id" type="text" placeholder="Email">
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <?php $skill=array('C','C++','Java','Dot Net','C#','PHP','Python','Perl','Ruby','Javascript','SQL')?>
                                 <label>Skills <span style="color:#EB8B11">*</span></label>
                                 <?php  $skillArray= explode(",",$employeeEdit[0]['skills']);?>
@@ -77,6 +77,48 @@ $status = $this->session->flashdata('status');
                                     <option <?=$selected?>  value="<?php echo $row ?>" ><?php echo $row ?></option>
                                 <?php }?>
                                 </select>
+                            </div>-->
+			    <div class="form-group">
+                                <label>Primary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="primaryChange($(this))" name="skills[]">
+                                  <option>C</option>
+                                  <option>C++</option>
+                                  <option>Java</option>
+                                  <option>Dot Net</option>
+                                  <option>C#</option>
+                                  <option>PHP</option>
+                                  <option>Python</option>
+                                  <option>Perl</option>
+                                  <option>Ruby</option>
+                                  <option>Javascript</option>
+                                  <option>SQL</option>
+								  <option value="Others">Others</option>
+                                </select>
+                            </div>
+							 <div class="form-group primary hide">
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control primaryName input-md" value="<?php echo $employeeEdit[0]['primary_other_skils'];?>" name="" type="text" placeholder="primary other skils">
+                            </div>
+							<div class="form-group">
+                                <label>Secondary Skills <span style="color:#EB8B11">*</span></label>
+                                <select multiple class="form-control chzn-select input-sm" onchange="secondaryChange($(this))" name="SecondarySkills[]">
+                                  <option>C</option>
+                                  <option>C++</option>
+                                  <option>Java</option>
+                                  <option>Dot Net</option>
+                                  <option>C#</option>
+                                  <option>PHP</option>
+                                  <option>Python</option>
+                                  <option>Perl</option>
+                                  <option>Ruby</option>
+                                  <option>Javascript</option>
+                                  <option>SQL</option>
+								  <option  value="Others">Others</option>
+                                </select>
+                            </div>
+							<div class="form-group secondary hide" >
+                                <label>Other Skills<span style="color:#EB8B11">*</span></label>
+                                <input class="form-control secondaryName input-md" value="<?php echo $employeeEdit[0]['secondary_other_skils'];?>" name="" type="text" placeholder="secondary other skils">
                             </div>
                                                        
                             <div class="">
@@ -653,19 +695,43 @@ $status = $this->session->flashdata('status');
                     }
             }
         },
-        'skills[]':
-		{
-		    message: 'Skills is not valid',
-		    trigger:'blur',
-		    
-		    validators:
-		    {
-			notEmpty:
-			{
-			    message: 'Skills is required and can\'t be empty'
-			}
-		    }
-		},
+//        'skills[]':
+//		{
+//		    message: 'Skills is not valid',
+//		    trigger:'blur',
+//		    
+//		    validators:
+//		    {
+//			notEmpty:
+//			{
+//			    message: 'Skills is required and can\'t be empty'
+//			}
+//		    }
+//		},
+'skills[]': {
+					validators: {
+					
+					notEmpty: {
+						message: 'The Skill is required and can\'t be empty'
+					},
+					}
+				},
+				'primary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The Primary other skills'
+                       },
+                   }
+				},
+				'secondary_other_skils': {
+                  
+                   validators: {
+                       notEmpty: {
+                           message: 'The secondary other skills'
+                       },
+                   }
+               },
          'language_known[]':
 		{
 		    message: 'Language is not valid',
@@ -933,5 +999,65 @@ $status = $this->session->flashdata('status');
 	$('*#edu_duration_to').datetimepicker({
 	    format: 'DD-MMM-YYYY'
 	}); 
-    }     
+    }
+    function primaryChange($this)
+   {
+	   
+		var values=$this.val();
+		if(values!=null)
+		{
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".primary").removeClass("hide");
+				$(".primaryName").attr("name","primary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "primary_other_skils");
+			
+			}
+			else
+			{			
+				
+				$('#form_validation').bootstrapValidator('revalidateField',"primary_other_skils");
+				$(".primaryName").removeAttr("name");
+				$(".primary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".primaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField',"primary_other_skils");
+			$(".primary").addClass("hide");
+		}
+		
+   }
+   function secondaryChange($this)
+   {
+		
+		var values=$this.val();
+		if(values!=null)
+		{
+			
+			var res = values.toString().split(",");
+			if(jQuery.inArray("Others", res)!='-1')
+			{
+				$(".secondary").removeClass("hide");
+				$(".secondaryName").attr("name","secondary_other_skils");
+				$('#form_validation').bootstrapValidator('addField', "secondary_other_skils");
+			
+			}
+			else
+			{
+				$('#form_validation').bootstrapValidator('revalidateField', "secondary_other_skils");
+				$(".secondaryName").removeAttr("name");
+				$(".secondary").addClass("hide");
+			}
+		}
+		else
+		{			
+			$(".secondaryName").removeAttr("name");
+			//$('#form_validation').bootstrapValidator('removeField', "secondary_other_skils");
+			$(".secondary").addClass("hide");
+		}
+		
+   }
 </script>
