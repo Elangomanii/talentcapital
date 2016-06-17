@@ -863,5 +863,350 @@
 	    $sql="SELECT name FROM vendor where vendor_code='$code'";
 	    return $this->db->query($sql, $return_object = TRUE)->result_array();
 	}
+	
+	function CheckLoginType($email,$pwd)
+	{
+	    $sql="SELECT * FROM emp_candidate_details where mail_id='$email' and password='$pwd'";
+	    return $this->db->query($sql, $return_object = TRUE)->result_array();
+	}
+	function GetEmpl_details($emp_id)
+	{
+	    $sql="SELECT * FROM employement_details where head_id='$emp_id'";
+	    return $this->db->query($sql, $return_object = TRUE)->result_array();
+	}
+	function Geteducational_details($emp_id)
+	{
+	    $sql="SELECT * FROM educational_details where head_id='$emp_id'";
+	    return $this->db->query($sql, $return_object = TRUE)->result_array();
+	}
+	function updatelogindata($id)
+	{
+			//print_r($id);exit;
+	    //$this->db->where('email_random_code', $uniqueCode);
+            $folderPath = $config['upload_path'] = 'upload/';
+            $config['allowed_types'] = 'gif|jpg|png';     
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('pan_card_attach');
+            $data = $this->upload->data();
+            $filePath=$folderPath.$data['file_name'];
+	    
+	    $folderPath = $config['upload_path'] = 'upload/';
+            $config['allowed_types'] = 'gif|jpg|png';     
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('profile_pic');
+            $data = $this->upload->data();
+            $profilePic=$folderPath.$data['file_name'];
+	    
+		$primary=$this->input->post('primary_other_skils');
+		$secondary=$this->input->post('secondary_other_skils');
+		//echo $test;exit;
+    
+		if($primary==null)
+		{
+		    $primary="NULL";
+		}
+		else {
+		    $primary=$this->input->post('primary_other_skils');
+		}
+		
+		if($secondary==null)
+		{
+		   $secondary='NULL';
+		}
+		else {
+		    $secondary=$this->input->post('secondary_other_skils');
+		}
+		
+		//if($this->input->post('vendor_code')=="")
+		//{
+		//	if($this->input->post('SecondarySkills')=="")
+		//	{
+		//		echo "sec";
+		//		
+		//		$data= array(
+		//		    'vendor_code'=>$this->input->post('vendor_code'),
+		//		    'candidate_name'=>$this->input->post('candidate_name'),
+		//		    'middle_name'=>$this->input->post('middle_name'),
+		//		    'last_name'=>$this->input->post('last_name'),
+		//		    'mobile_number'=>$this->input->post('mobile_number'),
+		//		    
+		//		    //'mail_id'=>$this->input->post('mail_id'),
+		//		    'skills'=>implode(",",$this->input->post('skills')),
+		//		    'primary_other_skils'=>$primary,
+		//		    'total_exp_year'=>$this->input->post('total_exp_year'),
+		//		    'total_exp_month'=>$this->input->post('total_exp_month'),
+		//		    'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		//		    'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		//		    'notice_period'=>$this->input->post('notice_period'),
+		//		    
+		//		    
+		//		    
+		//		    'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		//		    'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		//		    'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+		//		    'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		//		    
+		//		    
+		//		    'day'=>$this->input->post('day'),
+		//		    'month'=>$this->input->post('month'),
+		//		    'year'=>$this->input->post('year'),
+		//		    'pan_card_no'=>$this->input->post('pan_card_no'),
+		//		    'pan_card_attach'=>$filePath,
+		//		    'language_known'=>implode(",",$this->input->post('language_known')),
+		//		    'current_location'=>$this->input->post('current_location'),
+		//		    'preferred_location'=>$this->input->post('preferred_location'),
+		//		    'interview_timing'=>$this->input->post('interview_timing'),
+		//		    
+		//		    
+		//		   'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		//		   'educational_gap_month'=>$this->input->post('educational_gap_month'),
+		//		    'career_gap_year'=>$this->input->post('career_gap_year'),
+		//		    'career_gap_month'=>$this->input->post('career_gap_month'),
+		//		    'team_size_name'=>$this->input->post('team_size_name'),
+		//		    'team_contact_no'=>$this->input->post('team_contact_no'),
+		//		    'profile_pic'=>$profilePic
+		//		);
+		//		
+		//	}
+		//	else
+		//	{
+		//		
+		//		$data= array(
+		//		    'vendor_code'=>$this->input->post('vendor_code'),
+		//		    'candidate_name'=>$this->input->post('candidate_name'),
+		//		    'middle_name'=>$this->input->post('middle_name'),
+		//		    'last_name'=>$this->input->post('last_name'),
+		//		    'mobile_number'=>$this->input->post('mobile_number'),
+		//		    
+		//		    //'mail_id'=>$this->input->post('mail_id'),
+		//		    'skills'=>implode(",",$this->input->post('skills')),
+		//		    'primary_other_skils'=>$primary,
+		//		    'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
+		//		    'secondary_other_skils'=>$secondary,
+		//		    
+		//		    'total_exp_year'=>$this->input->post('total_exp_year'),
+		//		    'total_exp_month'=>$this->input->post('total_exp_month'),
+		//		    'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		//		    'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		//		    'notice_period'=>$this->input->post('notice_period'),
+		//		    
+		//		    
+		//		    
+		//		    'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		//		    'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		//		    'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+		//		    'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		//		    
+		//		    
+		//		    'day'=>$this->input->post('day'),
+		//		    'month'=>$this->input->post('month'),
+		//		    'year'=>$this->input->post('year'),
+		//		    'pan_card_no'=>$this->input->post('pan_card_no'),
+		//		    'pan_card_attach'=>$filePath,
+		//		    'language_known'=>implode(",",$this->input->post('language_known')),
+		//		    'current_location'=>$this->input->post('current_location'),
+		//		    'preferred_location'=>$this->input->post('preferred_location'),
+		//		    'interview_timing'=>$this->input->post('interview_timing'),
+		//		    
+		//		    
+		//		   'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		//		   'educational_gap_month'=>$this->input->post('educational_gap_month'),
+		//		    'career_gap_year'=>$this->input->post('career_gap_year'),
+		//		    'career_gap_month'=>$this->input->post('career_gap_month'),
+		//		    'team_size_name'=>$this->input->post('team_size_name'),
+		//		    'team_contact_no'=>$this->input->post('team_contact_no'),
+		//		    'profile_pic'=>$profilePic
+		//		);
+		//	}
+		//}
+		//else{
+		//	
+		//	if($this->input->post('SecondarySkills')=="")
+		//	{
+		//		$data= array(
+		//		    'vendor_code'=>$this->input->post('vendor_code'),
+		//		    'candidate_name'=>$this->input->post('candidate_name'),
+		//		    'middle_name'=>$this->input->post('middle_name'),
+		//		    'last_name'=>$this->input->post('last_name'),
+		//		    'mobile_number'=>$this->input->post('mobile_number'),
+		//		    
+		//		    //'mail_id'=>$this->input->post('mail_id'),
+		//		    'skills'=>implode(",",$this->input->post('skills')),
+		//		    'primary_other_skils'=>$primary,
+		//		    'total_exp_year'=>$this->input->post('total_exp_year'),
+		//		    'total_exp_month'=>$this->input->post('total_exp_month'),
+		//		    'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		//		    'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		//		    'notice_period'=>$this->input->post('notice_period'),
+		//		    
+		//		    
+		//		    
+		//		    'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		//		    'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		//		    'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+		//		    'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		//		    
+		//		    
+		//		    'day'=>$this->input->post('day'),
+		//		    'month'=>$this->input->post('month'),
+		//		    'year'=>$this->input->post('year'),
+		//		    'pan_card_no'=>$this->input->post('pan_card_no'),
+		//		    'pan_card_attach'=>$filePath,
+		//		    'language_known'=>implode(",",$this->input->post('language_known')),
+		//		    'current_location'=>$this->input->post('current_location'),
+		//		    'preferred_location'=>$this->input->post('preferred_location'),
+		//		    'interview_timing'=>$this->input->post('interview_timing'),
+		//		    
+		//		    
+		//		   'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		//		   'educational_gap_month'=>$this->input->post('educational_gap_month'),
+		//		    'career_gap_year'=>$this->input->post('career_gap_year'),
+		//		    'career_gap_month'=>$this->input->post('career_gap_month'),
+		//		    'team_size_name'=>$this->input->post('team_size_name'),
+		//		    'team_contact_no'=>$this->input->post('team_contact_no'),
+		//		    'profile_pic'=>$profilePic
+		//		);
+		//		
+		//	}
+		//	else
+		//	{
+		//	   $data= array(
+		//		    'vendor_code'=>$this->input->post('vendor_code'),
+		//		    'candidate_name'=>$this->input->post('candidate_name'),
+		//		    'middle_name'=>$this->input->post('middle_name'),
+		//		    'last_name'=>$this->input->post('last_name'),
+		//		    'mobile_number'=>$this->input->post('mobile_number'),
+		//		    
+		//		    //'mail_id'=>$this->input->post('mail_id'),
+		//		    'skills'=>implode(",",$this->input->post('skills')),
+		//		    'primary_other_skils'=>$primary,
+		//		    'SecondarySkills'=>implode(",",$this->input->post('SecondarySkills')),
+		//		    'secondary_other_skils'=>$secondary,
+		//		    
+		//		    'total_exp_year'=>$this->input->post('total_exp_year'),
+		//		    'total_exp_month'=>$this->input->post('total_exp_month'),
+		//		    'relevant_exp_year'=>$this->input->post('relevant_exp_year'),
+		//		    'relevant_exp_month'=>$this->input->post('relevant_exp_month'),
+		//		    'notice_period'=>$this->input->post('notice_period'),
+		//		    
+		//		    
+		//		    
+		//		    'current_ctc_lakhs'=>$this->input->post('current_ctc_lakhs'),
+		//		    'current_ctc_thousands'=>$this->input->post('current_ctc_thousands'),
+		//		    'expected_ctc_lakhs'=>$this->input->post('expected_ctc_lakhs'),
+		//		    'expected_ctc_thousands'=>$this->input->post('expected_ctc_thousands'),
+		//		    
+		//		    
+		//		    'day'=>$this->input->post('day'),
+		//		    'month'=>$this->input->post('month'),
+		//		    'year'=>$this->input->post('year'),
+		//		    'pan_card_no'=>$this->input->post('pan_card_no'),
+		//		    'pan_card_attach'=>$filePath,
+		//		    'language_known'=>implode(",",$this->input->post('language_known')),
+		//		    'current_location'=>$this->input->post('current_location'),
+		//		    'preferred_location'=>$this->input->post('preferred_location'),
+		//		    'interview_timing'=>$this->input->post('interview_timing'),
+		//		    
+		//		    
+		//		   'educational_gap_year'=>$this->input->post('educational_gap_year'),
+		//		   'educational_gap_month'=>$this->input->post('educational_gap_month'),
+		//		    'career_gap_year'=>$this->input->post('career_gap_year'),
+		//		    'career_gap_month'=>$this->input->post('career_gap_month'),
+		//		    'team_size_name'=>$this->input->post('team_size_name'),
+		//		    'team_contact_no'=>$this->input->post('team_contact_no'),
+		//		    'profile_pic'=>$profilePic
+		//		);
+		//	}
+		//}
+				//echo "<pre>";
+				//print_r($data);exit;
+				
+				    $vendor_code=$this->input->post('vendor_code');
+				    $candidate_name=$this->input->post('candidate_name');
+				    $mobile_number=$this->input->post('mobile_number');
+				    
+				    $skills=implode(",",$this->input->post('skills'));
+				    $primary_other_skils=$primary;
+				    $SecondarySkills=implode(",",$this->input->post('SecondarySkills'));
+				    $secondary_other_skils=$secondary;
+				    $total_exp_year=$this->input->post('total_exp_year');
+				    $total_exp_month=$this->input->post('total_exp_month');
+				    $relevant_exp_year=$this->input->post('relevant_exp_year');
+				    $relevant_exp_month=$this->input->post('relevant_exp_month');
+				    $notice_period=$this->input->post('notice_period');
+				    $current_ctc_lakhs=$this->input->post('current_ctc_lakhs');
+				    $current_ctc_thousands=$this->input->post('current_ctc_thousands');
+				    $expected_ctc_lakhs=$this->input->post('expected_ctc_lakhs');
+				    $expected_ctc_thousands=$this->input->post('expected_ctc_thousands');
+				    $day=$this->input->post('day');
+				    $month=$this->input->post('month');
+				    $year=$this->input->post('year');
+				    $pan_card_no=$this->input->post('pan_card_no');
+				    $pan_card_attach=$filePath;
+				    $language_known=implode(",",$this->input->post('language_known'));
+				    $current_location=$this->input->post('current_location');
+				    $preferred_location=$this->input->post('preferred_location');
+				    $interview_timing=$this->input->post('interview_timing');
+				    $educational_gap_year=$this->input->post('educational_gap_year');
+				    $educational_gap_month=$this->input->post('educational_gap_month');
+				    $career_gap_year=$this->input->post('career_gap_year');
+				    $career_gap_month=$this->input->post('career_gap_month');
+				    $team_size_name=$this->input->post('team_size_name');
+				    $team_contact_no=$this->input->post('team_contact_no');
+				    $profile_pic=$profilePic;
+				    
+			    $sql=mysql_query("UPDATE emp_candidate_details SET 	vendor_code='$vendor_code',candidate_name='$candidate_name',mobile_number='$mobile_number',skills='$skills',primary_other_skils='$primary_other_skils',secondary_other_skils='$secondary_other_skils',
+					     SecondarySkills='$SecondarySkills',total_exp_year='$total_exp_year',total_exp_month='$total_exp_month',current_ctc_thousands='$current_ctc_thousands',expected_ctc_thousands='$expected_ctc_thousands',relevant_exp_year='$relevant_exp_year',
+					     relevant_exp_month='$relevant_exp_month',notice_period='$notice_period',current_ctc_lakhs='$current_ctc_lakhs',expected_ctc_lakhs='$expected_ctc_lakhs',day='$day',month='$month',year='$year',
+					     pan_card_no='$pan_card_no',pan_card_attach='$pan_card_attach',language_known='$language_known',current_location='$current_location',preferred_location='$preferred_location',interview_timing='$interview_timing',profile_pic='$profile_pic',
+					     educational_gap_year='$educational_gap_year',
+					     educational_gap_month='$educational_gap_month',
+					     career_gap_year='$career_gap_year',
+					     career_gap_month='$career_gap_month',
+					     team_size_name='$team_size_name',
+					     team_contact_no='$team_contact_no' 
+					     where id='$id'");
+			    //echo $sql;exit;
+			    $select = mysql_query($sql);
+				
+		//$this->db->where('id',$id);
+		//$select = $this->db->update('emp_candidate_details',$data);
+
+            $clientCnt = count($this->input->post('client_comp'));
+            for($i=0; $i<$clientCnt; $i++)
+            {
+		$line_id=$_POST['emp_lineid'][$i];
+		$data= array(
+		    //'head_id'=>$this->input->post('hiddenId'),
+		    'client_comp'=>$_POST['client_comp'][$i],
+		    'payroll_comp'=>$_POST['payroll_comp'][$i],
+		    'designation'=>$_POST['designation'][$i],
+		    'emp_duration_from'=>$_POST['emp_duration_from'][$i],
+		    'emp_duration_to'=>$_POST['emp_duration_to'][$i],
+		    'location'=>$_POST['location'][$i],
+		    'reason_desc'=>$_POST['empReasonDesc'][$i],
+		);
+		$this->db->where('id', $line_id);
+		$this->db->update('employement_details',$data);
+            }
+         
+            $degreeCnt = count($this->input->post('degree'));
+            for($j=0; $j<$degreeCnt; $j++)
+            {
+		$line_id=$_POST['edu_lineid'][$j];
+		$data= array(
+		    'degree'=>$_POST['degree'][$j],
+		    'specialisation'=>$_POST['specialisation'][$j],
+		    'edu_duration_from'=>$_POST['edu_duration_from'][$j],
+		    'edu_duration_to'=>$_POST['edu_duration_to'][$j],
+		    'university'=>$_POST['university'][$j],
+		    'percentage'=>$_POST['percentage'][$j],
+		    'reason_desc'=>$_POST['reasonDesc'][$j]
+		);
+		$this->db->where('id', $line_id);
+		$this->db->update('educational_details',$data);
+            }
+        }
+	
     }
 ?>
