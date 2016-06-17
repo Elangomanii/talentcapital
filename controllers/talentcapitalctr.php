@@ -72,11 +72,27 @@ class talentcapitalctr extends CI_Controller {
 	    }
 	    else if($_POST['save'] == "Sign me in")
 	    {
+		//echo $_POST['login_types'];exit;
 		if($_POST['login_types']=='vendor'){
 		    require_once('vendorlogin.php');
 		    $newValu=new vendorlogin();
 		    $newValu->index();
-		}/*else{
+		}
+		else if($_POST['login_types']=='directemploye'){
+		    $email=$_POST['email'];
+		    $pwd=$_POST['password'];
+		    $loginUser['inter_Edit']=$this->tc_model->CheckLoginType($email,$pwd);
+		    //print_r($loginUser['inter_Edit']);
+		    $emp_id=$loginUser['inter_Edit'][0]['id'];
+		    $loginUser['GetEmpl']=$this->tc_model->GetEmpl_details($emp_id);
+		    //print_r($loginUser['inter_Edit']);
+		    $loginUser['Geteducational']=$this->tc_model->Geteducational_details($emp_id);
+		    //print_r($loginUser['inter_Edit']);exit;
+		    $this->load->view('view/header');
+		    $this->load->view('view/footer');
+		    $this->load->view('view/internalEmployee _Edit',$loginUser);
+		}
+		/*else{
 		    require_once('admin.php');
 		    $newValu=new admin();
 		    $newValu->index();
@@ -96,6 +112,14 @@ class talentcapitalctr extends CI_Controller {
 		$this->load->view('view/footer');
 		
 	    }
+	}
+	function updatelogin()
+	{
+	    //echo "<pre>";
+	    //print_r($_POST['hiddenId']);exit;
+	    $id=$_POST['hiddenId'];
+	    $data['SetAlldata'] = $this->tc_model->updatelogindata($id);
+	    redirect('talentcapitalctr/index');
 	}
 	function vendorRegister($uniqueCode)
 	{
